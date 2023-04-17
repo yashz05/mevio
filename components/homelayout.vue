@@ -1,9 +1,9 @@
 <template>
     <div class=" h-screen">
         <div class="h-14 fixed backdrop-blur-3xl  top-0  w-full px-10 py-3 justify-between flex text-white">
-            <div class="order-1 font-bold text-3xl">
+            <NuxtLink class="order-1 font-bold text-3xl" to="/">
                 Mevio
-            </div>
+            </NuxtLink>
 
 
             <div class="order-2 font-bold text-3xl">

@@ -1,6 +1,6 @@
 <template>
     <homelayout>
-        <div class="text-white" v-if="pending">LOADING</div>
+        <div class="text-white" v-if="movie == null">LOADING</div>
         <div v-else class="w-full pt-16">
             <div class="w-full relative" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')  `,
@@ -19,7 +19,7 @@
                     <img :src='"https://image.tmdb.org/t/p/w500/"+movie.poster_path'
                          class="sm:w-[170px] sm:h-[250px] rounded-xl sm:mx-0 w-full mx-auto w-[140px] -mb-20"/>
                     <div class="text-white mx-4 my-3">
-                        <div class="text-3xl"> {{ movie.title }}</div>
+                        <div class="text-3xl"> {{ movie.original_name }}</div>
                         <div class="text-white/25   my-2 w-full text-sm flex">
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -49,7 +49,7 @@
                                 </svg>
 
                             </div>
-                            <div class="ml-3"> {{ movie.release_date }}</div>
+                            <div class="ml-3"> {{ movie.first_air_date }}</div>
 
                         </div>
                         {{ movie.overview }}
@@ -71,7 +71,8 @@
                 </div>
                 <div v-if="casts['cast'].length > 0" class="font-bold text-m text-gray-50/25 mt-5">Casts</div>
 
-                <div class="h-[150px] mt-3  overflow-x-scroll  w-full flex">
+
+                <div class="h-[200px] mt-3  overflow-x-scroll  w-full flex">
                     <div v-if="casts != null" v-for="cast in casts['cast']"
                     >
 
@@ -97,54 +98,34 @@
                                                }">
 
                         </div>
-                        <div class="font-thin text-xs text-center text-white mt-2">{{ cast.original_name }}</div>
+                        <div class="font-bold text-sm text-center text-gray-50/25 mt-2">{{ cast.original_name }}</div>
 
 
-                    </div>
-                </div>
-
-
-                <div v-if="recommended['results'].length > 0" class="font-bold text-m text-gray-50/25 mt-0">Recommended Movies</div>
-                <div class=" my-5 overflow-x-scroll  w-full flex ">
-                    <div v-if="!pending" v-for="(rm,i) in recommended['results']"
-                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
-                        <NuxtLink :to="/movie/+rm.id">
-                            <movie_card_1 :name="rm.title" :image="rm.poster_path" :rate="rm.vote_average"
-                                          :year="rm.release_date"></movie_card_1>
-                        </NuxtLink>
-                    </div>
-                </div>
-                <div v-if="videos['results'].length > 0" class="font-bold text-m text-gray-50/25 mt-0">Videos</div>
-                <div class=" my-5 overflow-x-scroll w-full flex ">
-                    <div v-if="!pending" v-for="(vi,i) in videos['results']"
-                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
-                       <video-card :id="vi.key"></video-card>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </homelayout>
 </template>
 
 <script setup>
-import Movie_card_1 from "~/components/movie_card_1.vue";
-
 const runtimeConfig = useRuntimeConfig()
 const route = useRoute()
 const {
     pending,
     data: movie
-} = useLazyFetch(`${runtimeConfig.public.apiBase}movie/${route.params.id}?api_key=${runtimeConfig.public.apiSecret}&language=en-US`)
+} = useLazyFetch(`${runtimeConfig.public.apiBase}tv/${route.params.id}?api_key=${runtimeConfig.public.apiSecret}&language=en-US`)
 watch(movie, (moviedetail) => {
+    console.log(moviedetail)
 
 })
-const [{data: casts}, {data: recommended}, {data: videos}] = await Promise.all([
-    useFetch(`${runtimeConfig.public.apiBase}movie/${route.params.id}/credits?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
-    useFetch(`${runtimeConfig.public.apiBase}movie/${route.params.id}/recommendations?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
-  useFetch(`${runtimeConfig.public.apiBase}movie/${route.params.id}/videos?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`)
+
+const [{data: casts}, {data: repos}] = await Promise.all([
+    useFetch(`${runtimeConfig.public.apiBase}tv/${route.params.id}/credits?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
+    useFetch(`https://api.github.com/orgs/nuxt/repos`)
 ])
-
-
 </script>
 
 <style scoped>
