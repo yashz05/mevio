@@ -71,7 +71,6 @@
 
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
-
 const {
     pending,
     data: genre

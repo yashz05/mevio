@@ -4,6 +4,8 @@
             <div class="order-1 font-bold text-3xl">
                 Mevio
             </div>
+
+
             <div class="order-2 font-bold text-3xl">
                 <div class="mt-1">
                     <input type="search" name="email" id="email" class=" backdrop-blur-3xl bg-white/[.10] shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-52 sm:text-sm border-transparent rounded-md" placeholder="Search ..." />
@@ -30,6 +32,7 @@
 </template>
 
 <script>
+
 export default {
     name: "homelayout"
 }
