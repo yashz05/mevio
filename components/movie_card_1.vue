@@ -1,14 +1,18 @@
 <template>
     <div>
-        <div class=" mx-3 rounded-xl " :style="{
-                                                   background: `url('https://image.tmdb.org/t/p/original/${image}')  `,
-                                                      ' background-repeat':'no-repeat',
+
+        <div class="mx-3 rounded-xl" :style="{ 'height': '195px',
+                                                        'width': '139px',}" >
+            <nuxt-img class="rounded-xl"  :src="'https://image.tmdb.org/t/p/w200/'+image"  width="300"
+                       height="169" :placeholder="[10, 0, 80]" lazy :style="{
+                                                        ' background-repeat':'no-repeat',
                                                         'background-size':'cover',
                                                         'height': '195px',
                                                         'width': '139px',
                                                         'z-index':-10
-                                               }">
+                       }"/>
 
+<!--            <nuxt-image :src="'https://image.tmdb.org/t/p/original/'+image" :placeholder="[100, 50, 10]" />-->
 
         </div>
         <div class="text-white/25 ml-3 my-2 w-full text-sm flex">

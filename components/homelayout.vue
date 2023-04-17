@@ -1,10 +1,12 @@
 <template>
     <div class=" h-screen">
+        <LazyNuxtLoadingIndicator :height="5" :duration="1000" />
+        <NuxtLoadingIndicator  :height="5" :duration="1000"/>
+
         <div class="h-14 fixed backdrop-blur-3xl  top-0  w-full px-10 py-3 justify-between flex text-white">
             <NuxtLink class="order-1 font-bold text-3xl" to="/">
                 Mevio
             </NuxtLink>
-
 
             <div class="order-2 font-bold text-3xl">
                 <div class="mt-1">

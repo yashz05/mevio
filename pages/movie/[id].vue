@@ -1,6 +1,8 @@
 <template>
     <homelayout>
+            <youtube-video-popup :show="videopop" :id="videoid"/>
         <div class="text-white" v-if="pending">LOADING</div>
+
         <div v-else class="w-full pt-16">
             <div class="w-full relative" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')  `,
@@ -104,33 +106,41 @@
                 </div>
 
 
-                <div v-if="recommended['results'].length > 0" class="font-bold text-m text-gray-50/25 mt-0">Recommended Movies</div>
-                <div class=" my-5 overflow-x-scroll  w-full flex ">
-                    <div v-if="!pending" v-for="(rm,i) in recommended['results']"
-                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
-                        <NuxtLink :to="/movie/+rm.id">
-                            <movie_card_1 :name="rm.title" :image="rm.poster_path" :rate="rm.vote_average"
-                                          :year="rm.release_date"></movie_card_1>
-                        </NuxtLink>
-                    </div>
-                </div>
                 <div v-if="videos['results'].length > 0" class="font-bold text-m text-gray-50/25 mt-0">Videos</div>
                 <div class=" my-5 overflow-x-scroll w-full flex ">
                     <div v-if="!pending" v-for="(vi,i) in videos['results']"
                          class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
-                       <video-card :id="vi.key"></video-card>
+                        <video-card :id="vi.key"  v-on:click="video_popup(true,vi.key)" :title="vi.name"></video-card>
+                    </div>
+                </div>
+                <div v-if="recommended['results'].length > 0" class="font-bold text-m text-gray-50/25 mt-0">Recommended
+                    Movies
+                </div>
+                <div class=" my-5 overflow-x-scroll  w-full flex ">
+                    <div v-if="!pending" v-for="(rm,i) in recommended['results']"
+                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
+                        <NuxtLink :to="/movie/+rm.id">
+                            <movie_card_1  :name="rm.title" :image="rm.poster_path" :rate="rm.vote_average"
+                                          :year="rm.release_date"></movie_card_1>
+                        </NuxtLink>
                     </div>
                 </div>
             </div>
         </div>
+
     </homelayout>
 </template>
 
 <script setup>
 import Movie_card_1 from "~/components/movie_card_1.vue";
-
+const videopop = ref(false);
+const videoid = ref(1);
 const runtimeConfig = useRuntimeConfig()
 const route = useRoute()
+function video_popup(show,id){
+    videopop.value = show;
+    videoid.value = id;
+}
 const {
     pending,
     data: movie
@@ -138,10 +148,14 @@ const {
 watch(movie, (moviedetail) => {
 
 })
+
+
 const [{data: casts}, {data: recommended}, {data: videos}] = await Promise.all([
     useFetch(`${runtimeConfig.public.apiBase}movie/${route.params.id}/credits?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
     useFetch(`${runtimeConfig.public.apiBase}movie/${route.params.id}/recommendations?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
-  useFetch(`${runtimeConfig.public.apiBase}movie/${route.params.id}/videos?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`)
+    useFetch(`${runtimeConfig.public.apiBase}movie/${route.params.id}/videos?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
+    // useFetch(`${runtimeConfig.public.apiBase}movie/${route.params.id}/reviews?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
+
 ])
 
 
