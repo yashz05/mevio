@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class=" mx-3 rounded-xl" :style="{
+        <div class=" mx-3 rounded-xl " :style="{
                                                    background: `url('https://image.tmdb.org/t/p/original/${image}')  `,
                                                       ' background-repeat':'no-repeat',
                                                         'background-size':'cover',
@@ -20,7 +20,8 @@
                           clipRule="evenodd"/>
                 </svg>
             </div>
-            <div class="ml-3">{{rate}}</div>
+            <div class="ml-3">{{rate}}  </div>
+<!--            <div class="ml-3 text-xs">{{year}}  </div>-->
         </div>
     </div>
 
@@ -29,7 +30,7 @@
 <script lang="ts">
 export default {
     props: [
-        'name', 'image','rate'
+        'name', 'image','rate', 'year'
     ]
 }
 </script>

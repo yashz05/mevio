@@ -6,6 +6,9 @@ export default defineNuxtConfig({
 
     modules: ['@nuxtjs/tailwindcss'],
     // @ts-ignore
+    buildModules: [
+        '@nuxtjs/moment'],
+
     runtimeConfig: {
 
         // The private keys which are only available within server-side

@@ -27,11 +27,20 @@
                         </div>
                     </div>
                 </div>
-
-                <div class=" my-5 overflow-x-scroll  w-full flex">
-                    <div v-if="!pending" v-for="(tm,i) in top_movies['results']" class="  group">
-
-                        <movie_card_1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"></movie_card_1>
+                <div class="font-bold text-m text-gray-50/25 ml-5 mb-5">Top Rated Movies</div>
+                <div class=" my-5 overflow-x-scroll  w-full flex ">
+                    <div v-if="!pending" v-for="(tm,i) in top_movies['results']"
+                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
+                        <movie_card_1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"
+                                      :year="tm.release_date"></movie_card_1>
+                    </div>
+                </div>
+                <div class="font-bold text-m text-gray-50/25 ml-5 mb-5">Top Rated TV shows</div>
+                <div class=" my-5 overflow-x-scroll  w-full flex ">
+                    <div v-if="!pending" v-for="(tm,i) in top_tvshow['results']"
+                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
+                        <movie_card_1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"
+                                      :year="tm.release_date"></movie_card_1>
                     </div>
                 </div>
             </div>
@@ -40,7 +49,7 @@
     </homelayout>
 </template>
 <script setup lang="ts">
-
+import moment from 'moment';
 import {ref} from "#imports";
 import Movie_card_1 from "~/components/movie_card_1.vue";
 
@@ -49,6 +58,7 @@ const {
     pending,
     data: slider
 } = useLazyFetch(runtimeConfig.public.apiBase + "trending/all/day" + "?api_key=" + runtimeConfig.public.apiSecret)
-const {data: top_movies} = await useFetch(`https://api.themoviedb.org/3/discover/movie?api_key=e17a6dcd6b3e85fcc2b1207a20002539&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
+const {data: top_movies} = await useFetch(`${runtimeConfig.public.apiBase}discover/movie?api_key=${runtimeConfig.public.apiSecret}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
+const {data: top_tvshow} = await useFetch(`${runtimeConfig.public.apiBase}discover/tv?api_key=${runtimeConfig.public.apiSecret}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0`);
 
 </script>
