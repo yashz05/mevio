@@ -1,28 +1,60 @@
 <template>
     <homelayout>
 
-        <div class="flex h-40">
-            <div class="w-2/12 sm:block  hidden">
-                <SideMenu/>
-            </div>
-            <div class="w-full pt-10 h-screen text-white overflow-y-auto h-screen">
-                <div class="h-[400px] my-5 overflow-x-scroll  w-full flex">
-                    <div v-if="!pending" v-for="(s,i) in slider['results']" class="w-22 group">
+                <div class="flex h-40">
 
+                        <div class="w-2/12 sm:block  hidden">
+                            <SideMenu/>
+                        </div>
+            <div class="w-full mt-10  text-white overflow-y-auto h-screen">
+                <div class="sm:h-[460px] h-[250px] my-5 overflow-x-scroll  w-full flex">
+                    <div v-if="!pending" v-for="(s,i) in slider['results']" class="w-22 group">
                         <NuxtLink :to="/movie/+s.id">
-                            <div class="relative " v-if="i <= 4" :style="{
+                            <div class="relative  sm:hidden" v-if="i <= 4" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/original/${s['backdrop_path']}')`,
                                                       ' background-repeat':'no-repeat',
                                                         'background-size':'cover',
-                                                        'height':'400px',
-                                                        width : '86vw',
+                                                        'height':'250px',
+                                                        width : '100vw',
                                                         'z-index':-10
                                                }">
 
                                 <div class="absolute  bg-gradient-to-t  from-black w-full text-center transition-all ease-in-out duration-300 group-hover:h-44 h-28 bottom-0 font-bold text-3xl ">
                                     <div class="mt-12 hover:text-red-500"> {{ s["title"] }}</div>
-                                    <div class="group-hover:block hidden text-xl px-10 font-thin">
+                                    <div class="group-hover:block hidden text-sm px-10 font-thin">
                                         {{ s["overview"] }}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="relative h-[500px] hidden sm:block" v-if="i <= 4" :style="{
+                                                   background: `url('https://image.tmdb.org/t/p/original/${s['backdrop_path']}')`,
+                                                      ' background-repeat':'no-repeat',
+                                                        'background-size':'cover',
+                                                        'height':'460px',
+                                                        width : '86vw',
+                                                        'z-index':-10
+                                               }">
+
+                                <div class="absolute flex  bg-gradient-to-t px-5  from-black w-full text-left transition-all ease-in-out duration-300   bottom-0 font-bold text-3xl ">
+                                    <div>
+                                    <div class="mt-[100px] hover:text-red-500"> {{ s["title"] }}</div>
+                                    <div class=" w-[60%] text-sm  line-clamp-2 text-gray-300 font-thin">
+                                        {{ s["overview"] }}
+                                    </div>
+                                    <div class=" w-[60%] text-sm flex mb-10 mt-3  text-gray-300 font-thin">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                             class="w-4 h-4 text-yellow-500 mr-2">
+                                            <path fillRule="evenodd"
+                                                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                                  clipRule="evenodd"/>
+                                        </svg>
+                                        {{ s["vote_average"] }}
+                                    </div>
+                                    </div>
+                                    <div class="absolute right-0 mt-[50px] mr-24 hover:text-red-500">
+                                       <img :src="'https://image.tmdb.org/t/p/original/'+s['poster_path']" style="height:200px;width: 150px"/>
                                     </div>
                                 </div>
 
@@ -33,7 +65,7 @@
                 <div class="font-bold text-m text-gray-50/25 ml-5 mb-5">Top Rated Movies</div>
                 <div class=" my-5 overflow-x-scroll  w-full flex ">
                     <div v-if="!pending" v-for="(tm,i) in top_movies['results']"
-                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
+                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                         <NuxtLink :to="/movie/+tm.id">
                             <movie_card_1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"
                                           :year="tm.release_date"></movie_card_1>
@@ -43,19 +75,21 @@
                 <div class="font-bold text-m text-gray-50/25 ml-5 mb-5">Top Rated TV shows</div>
                 <div class=" my-5 overflow-x-scroll  w-full flex ">
                     <div v-if="!pending" v-for="(tv,i) in top_tvshow['results']"
-                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
+                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                         <NuxtLink :to="/tv/+tv.id">
-                            <movie_card_1 :name="tv.title" :image="tv.poster_path" :rate="tv.vote_average"
-                                          :year="tv.release_date"></movie_card_1>
+                            <movie_card_1 :name="tv.name" :image="tv.poster_path" :rate="tv.vote_average"
+                                          :year="tv.first_air_date"></movie_card_1>
                         </NuxtLink>
                     </div>
                 </div>
                 <div class="font-bold text-m text-gray-50/25 ml-5 mb-5">Upcomming Movies</div>
                 <div class=" my-5 overflow-x-scroll  w-full flex ">
                     <div v-if="!pending" v-for="(up,i) in upcomming_movies['results']"
-                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105">
+                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
+                        <NuxtLink :to="/movie/+up.id">
                         <upcomming-card :name="up.title" :image="up.poster_path" :rate="up.vote_average"
                                         :year="up.release_date"></upcomming-card>
+                        </NuxtLink>
                     </div>
                 </div>
             </div>

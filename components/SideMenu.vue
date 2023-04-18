@@ -52,11 +52,14 @@
             <div class="grid grid-cols-2 gap-2 overflow-auto h-40 mx-4">
                 <div v-for="(g,i) in genre['genres']" :key="g.name"
                 >
+                    <NuxtLink :to="'/genre-movie-'+g.name+'/'+g.id" >
+
+
                     <div v-if="i <= 5"
                          class="bg-gray-50/10 text-center rounded-lg  text-xs pt-1 font-thin h-7 text-white text-ellipsis overflow-hidden">
                         {{ g.name }}
                     </div>
-
+                    </NuxtLink>
 
                 </div>
 

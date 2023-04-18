@@ -3,14 +3,14 @@
         <LazyNuxtLoadingIndicator :height="5" :duration="1000" />
         <NuxtLoadingIndicator  :height="5" :duration="1000"/>
 
-        <div class="h-14 fixed backdrop-blur-3xl  top-0  w-full px-10 py-3 justify-between flex text-white">
+        <div class="h-14 fixed backdrop-blur-3xl  top-0 z-20 w-full px-10 py-3 justify-between flex text-white">
             <NuxtLink class="order-1 font-bold text-3xl" to="/">
                 Mevio
             </NuxtLink>
 
             <div class="order-2 font-bold text-3xl">
                 <div class="mt-1">
-                    <input type="search" name="email" id="email" class=" backdrop-blur-3xl bg-white/[.10] shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-52 sm:text-sm border-transparent rounded-md" placeholder="Search ..." />
+                    <input type="search" name="text" id="search" class="backdrop-blur-3xl bg-white/[.10] shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-52 sm:text-sm border-transparent rounded-md -mt-2" placeholder="Search ..." />
                 </div>
             </div>
             <div class="order-last flex">

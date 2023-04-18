@@ -4,12 +4,12 @@ import {defineNuxtConfig} from 'nuxt/config'
 
 export default defineNuxtConfig({
 
-    modules: ['@nuxtjs/tailwindcss','@nuxt/image-edge',],
+    modules: ['@nuxtjs/tailwindcss', '@nuxt/image-edge',],
     // @ts-ignore
     buildModules: [
         '@nuxtjs/moment',
 
-       ],
+    ],
 
     runtimeConfig: {
 
@@ -17,6 +17,7 @@ export default defineNuxtConfig({
 
         // Keys within public, will be also exposed to the client-side
         public: {
+            appname: 'Mevio',
             apiBase: 'https://api.themoviedb.org/3/',
             apiSecret: 'e17a6dcd6b3e85fcc2b1207a20002539',
         }

@@ -4,15 +4,13 @@
         <div class="mx-3 rounded-xl" :style="{ 'height': '195px',
                                                         'width': '139px',}" >
             <nuxt-img class="rounded-xl"  :src="'https://image.tmdb.org/t/p/w200/'+image"  width="300"
-                       height="169" :placeholder="[10, 0, 80]" lazy :style="{
+                       height="169" placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio" lazy :style="{
                                                         ' background-repeat':'no-repeat',
                                                         'background-size':'cover',
                                                         'height': '195px',
                                                         'width': '139px',
                                                         'z-index':-10
                        }"/>
-
-<!--            <nuxt-image :src="'https://image.tmdb.org/t/p/original/'+image" :placeholder="[100, 50, 10]" />-->
 
         </div>
         <div class="text-white/25 ml-3 my-2 w-full text-sm flex">
@@ -24,8 +22,9 @@
                           clipRule="evenodd"/>
                 </svg>
             </div>
-            <div class="ml-3">{{rate}}  </div>
-<!--            <div class="ml-3 text-xs">{{year}}  </div>-->
+
+            <div class="ml-1">{{rate}}  </div>
+            <div class="ml-2 w-14 mt-0.5 truncate text-xs">{{name}}  </div>
         </div>
     </div>
 

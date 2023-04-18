@@ -17,6 +17,7 @@
     "postcss": "^8.4.22"
   },
   "dependencies": {
-    "@nuxtjs/moment": "^1.6.1"
+    "@nuxtjs/moment": "^1.6.1",
+    "@tailwindcss/line-clamp": "^0.4.4"
   }
 }
