@@ -140,7 +140,7 @@
                     <div v-if="casts != null" v-for="cast in casts['cast']"
                     >
 
-                        <div v-if="cast.profile_path != null" class="mx-2 rounded-lg" :style="{
+                        <div v-if="cast.profile_path != null" class="mx-2 rounded-lg relative" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/original/${cast.profile_path}')  `,
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',
@@ -149,6 +149,9 @@
                                                                 'width': '100px',
                                                         'z-index':-10
                                                }">
+                            <div class="absolute bottom-0 rounded-lg bg-gradient-to-t h-10 from-black w-full">
+
+                            </div>
 
                         </div>
                         <div v-else class="mx-2 rounded-lg blur-sm" :style="{

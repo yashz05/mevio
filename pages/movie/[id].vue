@@ -139,8 +139,8 @@
                 <div class="h-[150px] mt-3  overflow-x-scroll  w-full flex">
                     <div  v-for="cast in casts['cast']"
                     >
-                        <div   style="height: 100px;width: 100px" class="mx-2">
-                            <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path' class="rounded-lg"
+                        <div   style="height: 100px;width: 100px" class="mx-2 relative">
+                            <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path' class="rounded-lg object-cover"
                                       placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio" :style="{
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',
@@ -149,6 +149,10 @@
                                                                 'width': '100px',
                                                         'z-index':'-10',
                                                }" />
+                            <div class="absolute bottom-0 rounded-lg bg-gradient-to-t h-10 from-black w-full">
+
+                            </div>
+
                         </div>
 
 

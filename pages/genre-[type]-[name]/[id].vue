@@ -59,6 +59,17 @@ const {
     refresh
 } = useLazyFetch(`${runtimeConfig.public.apiBase}discover/${type}?api_key=${runtimeConfig.public.apiSecret}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${page_no.value}&with_genres=${route.params.id}&with_watch_monetization_types=flatrate`);
 watch(movies, (newCount) => {
+    useHead({
+        title: "Genre "+ name || runtimeConfig.public.appname,
+        ogTitle: "Genre "+name || runtimeConfig.public.appname,
+        description:"Genre "+ name || runtimeConfig.public.appname,
+        ogDescription:"Genre "+name || runtimeConfig.public.appname,
+
+        meta: [
+            {name: 'description', content:name}
+        ]
+
+    })
     // console.log("called")
     // movies.value.append(fetch(`${runtimeConfig.public.apiBase}discover/movie?api_key=${runtimeConfig.public.apiSecret}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=2&with_genres=${route.params.id}&with_watch_monetization_types=flatrate`));
 })

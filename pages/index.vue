@@ -98,10 +98,15 @@
     </homelayout>
 </template>
 <script setup lang="ts">
+
 import moment from 'moment';
 import {ref} from "#imports";
 import Movie_card_1 from "~/components/movie_card_1.vue";
 
+useHead({
+    title: 'Mevio',
+
+})
 const runtimeConfig = useRuntimeConfig()
 const {
     pending,
