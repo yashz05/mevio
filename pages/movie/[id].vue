@@ -6,7 +6,7 @@
         <div v-else class="w-full pt-16">
 
 
-            <div class="w-full sm:hidden block relative" >
+            <div class="w-full sm:hidden block relative">
                 <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+movie.poster_path'
                           placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio"
                           class="w-full sm:hidden block relative" :style="{
@@ -137,23 +137,29 @@
                 <div v-if="casts['cast'].length > 0" class="font-bold text-m text-gray-50/25 mt-5">Casts</div>
 
                 <div class="h-[150px] mt-3  overflow-x-scroll  w-full flex">
-                    <div  v-for="cast in casts['cast']"
+                    <div v-for="cast in casts['cast']"
                     >
-                        <div   style="height: 100px;width: 100px" class="mx-2 relative">
-                            <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path' class="rounded-lg object-cover"
-                                      placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio" :style="{
+                        <nuxt-link :to="'/cast-'+cast.original_name.replace(' ', '_')+'/'+cast.id">
+
+
+                            <div style="height: 100px;width: 100px" class="mx-2 relative">
+                                <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path'
+                                          class="rounded-lg object-cover"
+                                          placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio"
+                                          :style="{
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',
                                                                 'background-position': 'center center',
                                                                 'height': '100px',
                                                                 'width': '100px',
                                                         'z-index':'-10',
-                                               }" />
-                            <div class="absolute bottom-0 rounded-lg bg-gradient-to-t h-10 from-black w-full">
+                                               }"/>
+                                <div class="absolute bottom-0 rounded-lg bg-gradient-to-t h-10 from-black w-full">
+
+                                </div>
 
                             </div>
-
-                        </div>
+                        </nuxt-link>
 
 
                         <div class="font-thin text-xs text-center text-white mt-2">{{ cast.original_name }}</div>

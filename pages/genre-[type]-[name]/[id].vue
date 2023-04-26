@@ -64,7 +64,6 @@ watch(movies, (newCount) => {
         ogTitle: "Genre "+name || runtimeConfig.public.appname,
         description:"Genre "+ name || runtimeConfig.public.appname,
         ogDescription:"Genre "+name || runtimeConfig.public.appname,
-
         meta: [
             {name: 'description', content:name}
         ]

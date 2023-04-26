@@ -53,7 +53,7 @@
                                         {{ s["vote_average"] }}
                                     </div>
                                     </div>
-                                    <div class="absolute right-0 mt-[50px] mr-24 hover:text-red-500">
+                                    <div class="absolute right-0 mt-[40px] mr-24 hover:text-red-500">
                                        <img :src="'https://image.tmdb.org/t/p/original/'+s['poster_path']" style="height:200px;width: 150px"/>
                                     </div>
                                 </div>
