@@ -1,5 +1,5 @@
 <template>
-    <div class=" h-screen">
+    <div class=" h-screen select-none  ">
         <LazyNuxtLoadingIndicator :height="5" :duration="1000" />
         <NuxtLoadingIndicator  :height="5" :duration="1000"/>
 
@@ -10,7 +10,7 @@
 
             <div class="order-2 font-bold text-3xl">
                 <div class="mt-1">
-                    <input type="search" name="text" id="search" class="backdrop-blur-3xl bg-white/[.10] shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-52 sm:text-sm border-transparent rounded-md -mt-2" placeholder="Search ..." />
+                    <input type="search" name="text" id="search" class="sm:block hidden backdrop-blur-3xl bg-white/[.10] shadow-sm focus:ring-indigo-500 focus:border-indigo-500  w-52 sm:text-sm border-transparent rounded-md -mt-2" placeholder="Search ..." />
                 </div>
             </div>
             <div class="order-last flex">

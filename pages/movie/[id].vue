@@ -126,9 +126,9 @@
             <div class=" mt-10 bg-gray-900 px-10">
                 <div class="font-bold text-m text-gray-50/25 mt-12">Genres</div>
 
-                <div class="flex mt-3 overflow-x-scroll w-full">
+                <div class="flex mt-3 overflow-x-scroll w-full snap-mandatory snap-x">
                     <div v-for="genre in movie.genres"
-                         class="bg-gray-50/10 text-center rounded-lg mr-3 p-4  w-max text-xs pt-1 font-thin h-7 text-white text-ellipsis overflow-hidden">
+                         class="bg-gray-50/10 snap-center text-center rounded-lg mr-3 p-4  w-max text-xs pt-1 font-thin h-7 text-white text-ellipsis overflow-hidden">
                         <NuxtLink :to="'/genre-movie-'+genre.name+'/'+genre.id">
                             {{ genre.name }}
                         </NuxtLink>
@@ -136,13 +136,13 @@
                 </div>
                 <div v-if="casts['cast'].length > 0" class="font-bold text-m text-gray-50/25 mt-5">Casts</div>
 
-                <div class="h-[150px] mt-3  overflow-x-scroll  w-full flex">
-                    <div v-for="cast in casts['cast']"
+                <div class="h-[150px] mt-3  overflow-x-scroll snap-mandatory snap-x w-full flex">
+                    <div v-for="cast in casts['cast']" class="snap-start"
                     >
                         <nuxt-link :to="'/cast-'+cast.original_name.replace(' ', '_')+'/'+cast.id">
 
 
-                            <div style="height: 100px;width: 100px" class="mx-2 relative">
+                            <div style="height: 100px;width: 100px" class="mx-2 relative ">
                                 <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path'
                                           class="rounded-lg object-cover"
                                           placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio"
@@ -170,18 +170,18 @@
 
 
                 <div v-if="videos['results'].length > 0" class="font-bold text-m text-gray-50/25 mt-0">Videos</div>
-                <div class=" my-5 overflow-x-scroll w-full flex ">
+                <div class=" my-5 overflow-x-scroll w-full flex snap-mandatory snap-x">
                     <div v-if="!pending" v-for="(vi,i) in videos['results']"
-                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
+                         class="group transition ease-in-out delay-150  snap-start pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                         <video-card :id="vi.key" v-on:click="video_popup(true,vi.key)" :title="vi.name"></video-card>
                     </div>
                 </div>
                 <div v-if="recommended['results'].length > 0" class="font-bold text-m text-gray-50/25 mt-0">Recommended
                     Movies
                 </div>
-                <div class=" my-5 overflow-x-scroll  w-full flex ">
+                <div class=" my-5 overflow-x-scroll  w-full flex snap-mandatory snap-x">
                     <div v-if="!pending" v-for="(rm,i) in recommended['results']"
-                         class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
+                         class="group transition ease-in-out delay-150  snap-start pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                         <NuxtLink :to="/movie/+rm.id">
                             <movie_card_1 :name="rm.title" :image="rm.poster_path" :rate="rm.vote_average"
                                           :year="rm.release_date"></movie_card_1>
