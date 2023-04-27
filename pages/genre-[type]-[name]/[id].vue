@@ -1,7 +1,7 @@
 <template>
     <homelayout>
         <div class="pt-20 font-bold text-m text-gray-50/25 ml-5 mb-5" v-on:click="new_page">{{ type.toString().toUpperCase() + '~' + name }}</div>
-        <div class=" mx-2 my-5  overflow-x-hidden grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 gap-2" @scroll="scroll">
+        <div class="mx-2 my-5  overflow-x-hidden grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 gap-2" @scroll="scroll">
             <div v-if="!pending" v-for="(tm,i) in movies['results']"
                  class="group transition ease-in-out delay-150 mx-auto  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                 <NuxtLink :to="/movie/+tm.id">

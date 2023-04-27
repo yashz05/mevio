@@ -40,7 +40,7 @@
 
                 </div>
             </div>
-            <div class="sm:hidden text-white/25 mx-10">
+            <div class="sm:hidden text-white/25 px-4">
                 <div class="  my-2 w-full text-sm flex">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -118,7 +118,7 @@
                 </div>
 
             </div>
-            <div class=" mt-10 bg-gray-900 px-10">
+            <div class=" mt-10 bg-gray-900 sm:10 px-4">
                 <div class="font-bold text-m text-gray-50/25 mt-12">Genres</div>
                 <div class="flex mt-3">
                     <div v-for="genre in movie.genres"

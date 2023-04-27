@@ -1,7 +1,7 @@
 <template>
     <homelayout>
         <div class="flex">
-            <div class="w-2/12 sm:block  ">
+            <div class="w-2/12 sm:block  hidden">
                 <SideMenu/>
             </div>
             <div class="w-full pt-10  text-white overflow-y-auto h-screen">

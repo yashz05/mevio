@@ -38,8 +38,8 @@
 
                 </div>
             </div>
-            <!-- MOBILE SCREEN END -->
-            <div class="sm:hidden text-white/25 mx-10">
+
+            <div class="sm:hidden text-white/25 px-5">
                 <div class="  my-2 w-full text-sm flex">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -55,7 +55,7 @@
                 </div>
                 {{ movie.overview }}
             </div>
-
+            <!-- MOBILE SCREEN END -->
 <!--BIG SCREEN START-->
             <div class="w-full hidden sm:block relative" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')  `,
@@ -118,7 +118,7 @@
 
             </div>
 <!-- BIG SCREEN END-->
-            <div class=" mt-10 bg-gray-900 px-10">
+            <div class=" mt-10 bg-gray-900 sm:px-10 px-4">
                 <div class="font-bold text-m text-gray-50/25 mt-12">Genres</div>
 
                 <div class="flex mt-3 overflow-x-scroll w-full snap-mandatory snap-x">
