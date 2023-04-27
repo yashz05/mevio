@@ -8,7 +8,7 @@
             <div class="w-full text-white sm:overflow-y-auto sm:h-screen">
                 <div class="h-[60vh] relative  sm:hidden block mt-10">
                     <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path'
-                              placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio"
+                              :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                               class="w-full relative" :style="{
                                                                 'background-repeat': 'no-repeat',
                                                                 'background-size': 'contain',

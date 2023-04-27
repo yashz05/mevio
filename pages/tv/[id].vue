@@ -74,7 +74,7 @@
 
                 <div class="absolute  bottom-10 ml-10 flex">
                     <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+movie.poster_path'
-                              placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio"
+                              :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                               class="sm:w-[170px] sm:h-[250px] rounded-xl sm:mx-0  mx-auto w-[140px] -mb-20"/>
 
                     <div class="text-white mx-4 my-3">
@@ -140,31 +140,27 @@
                     <div v-if="casts != null" v-for="cast in casts['cast']"
                     >
 
-                        <div v-if="cast.profile_path != null" class="mx-2 rounded-lg relative" :style="{
-                                                   background: `url('https://image.tmdb.org/t/p/original/${cast.profile_path}')  `,
+                        <nuxt-link :to="'/cast-'+cast.original_name.replace(' ', '_')+'/'+cast.id">
+
+
+                            <div style="height: 100px;width: 100px" class="mx-2 relative ">
+                                <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path'
+                                          class="rounded-lg object-cover"
+                                          :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
+                                          :style="{
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',
-                                                                'background-position': '0% 50%',
+                                                                'background-position': 'center center',
                                                                 'height': '100px',
                                                                 'width': '100px',
-                                                        'z-index':-10
-                                               }">
-                            <div class="absolute bottom-0 rounded-lg bg-gradient-to-t h-10 from-black w-full">
+                                                        'z-index':'-10',
+                                               }"/>
+                                <div class="absolute bottom-0 rounded-lg bg-gradient-to-t h-10 from-black w-full">
+
+                                </div>
 
                             </div>
-
-                        </div>
-                        <div v-else class="mx-2 rounded-lg blur-sm" :style="{
-                                                   background: `url(https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80)  `,
-                                                            'background-repeat': 'no-repeat',
-                                                                'background-size': 'cover',
-                                                                'background-position': '0% 50%',
-                                                                'height': '100px',
-                                                                'width': '100px',
-                                                        'z-index':-10
-                                               }">
-
-                        </div>
+                        </nuxt-link>
                         <div class="font-bold text-sm text-center text-gray-50/25 mt-2">{{ cast.original_name }}</div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@
             <!-- MOBILE SCREEN START -->
             <div class="w-full sm:hidden block relative">
                 <nuxt-img :src='"https://image.tmdb.org/t/p/w500/"+movie.poster_path'
-                          placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio"
+                          :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                           class="w-full sm:hidden block  relative  h-[60vh] -z-10 bg-no-repeat bg-top bg-cover" />
                 <div class="absolute bottom-0 bg-gradient-to-t h-[50vh] from-black w-full">
 
@@ -73,7 +73,7 @@
 
                 <div class="absolute  bottom-10 ml-10 flex">
                     <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+movie.poster_path'
-                              placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio"
+                              :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                               class="sm:w-[170px] sm:h-[250px] rounded-xl sm:mx-0  mx-auto w-[140px] -mb-20"/>
 
                     <div class="text-white mx-4 my-3">
@@ -140,7 +140,7 @@
                             <div style="height: 100px;width: 100px" class="mx-2 relative ">
                                 <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path'
                                           class="rounded-lg object-cover"
-                                          placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio"
+                                          :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                                           :style="{
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',
