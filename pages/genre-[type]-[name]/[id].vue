@@ -3,7 +3,7 @@
         <div class="pt-20 font-bold text-m text-gray-50/25 ml-5 mb-5" v-on:click="new_page">{{ type.toString().toUpperCase() + '~' + name }}</div>
         <div class=" mx-2 my-5  overflow-x-hidden grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 gap-2" @scroll="scroll">
             <div v-if="!pending" v-for="(tm,i) in movies['results']"
-                 class="group transition ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
+                 class="group transition ease-in-out delay-150 mx-auto  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                 <NuxtLink :to="/movie/+tm.id">
                     <movie_card_1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"
                                   :year="tm.release_date"></movie_card_1>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-// import Movie_card_1 from "~/components/movie_card_1.vue";
+
 
 const runtimeConfig = useRuntimeConfig()
 const route = useRoute()
@@ -67,11 +67,8 @@ watch(movies, (newCount) => {
         meta: [
             {name: 'description', content:name}
         ]
-
     })
-    // console.log("called")
-    // movies.value.append(fetch(`${runtimeConfig.public.apiBase}discover/movie?api_key=${runtimeConfig.public.apiSecret}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=2&with_genres=${route.params.id}&with_watch_monetization_types=flatrate`));
-})
+  })
 
 
 </script>

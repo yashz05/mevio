@@ -61,7 +61,7 @@
                         {{ cast.biography }}
                     </div>
                     <div class="  my-5  w-full  grid grid-cols-2 md:grid-cols-5 lg:grid-cols-7 sm:gap-0  gap-0">
-                        <div v-if="!pending" v-for="(tm,i) in movies['results']"
+                        <div v-if="movies != null" v-for="(tm,i) in movies['results']"
                              class="group transition ease-in-out sm:mx-0 mx-auto delay-150 pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                             <NuxtLink :to="/movie/+tm.id">
                                 <movie_card_1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"
@@ -129,6 +129,7 @@ watch(cast, (castdetails) => {
 
 });
 const {
+
     data: movies,
     refresh1
 } = useFetch(`${runtimeConfig.public.apiBase}discover/movie`, {

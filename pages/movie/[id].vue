@@ -5,18 +5,11 @@
 
         <div v-else class="w-full pt-16">
 
-
+            <!-- MOBILE SCREEN START -->
             <div class="w-full sm:hidden block relative">
-                <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+movie.poster_path'
+                <nuxt-img :src='"https://image.tmdb.org/t/p/w500/"+movie.poster_path'
                           placeholder="https://dummyimage.com/500x400/1d2840/fafafa.png&text=Mevio"
-                          class="w-full sm:hidden block relative" :style="{
-                                                                'background-repeat': 'no-repeat',
-                                                                'background-size': 'cover',
-                                                                'background-position': 'center center',
-                                                                'height': '60vh',
-                                                                'width': '100vw',
-                                                        'z-index':-10
-                      }"/>
+                          class="w-full sm:hidden block  relative  h-[60vh] -z-10 bg-no-repeat bg-top bg-cover" />
                 <div class="absolute bottom-0 bg-gradient-to-t h-[50vh] from-black w-full">
 
                 </div>
@@ -45,6 +38,7 @@
 
                 </div>
             </div>
+            <!-- MOBILE SCREEN END -->
             <div class="sm:hidden text-white/25 mx-10">
                 <div class="  my-2 w-full text-sm flex">
                     <div>
@@ -62,7 +56,7 @@
                 {{ movie.overview }}
             </div>
 
-
+<!--BIG SCREEN START-->
             <div class="w-full hidden sm:block relative" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')  `,
                                                             'background-repeat': 'no-repeat',
@@ -123,12 +117,13 @@
                 </div>
 
             </div>
+<!-- BIG SCREEN END-->
             <div class=" mt-10 bg-gray-900 px-10">
                 <div class="font-bold text-m text-gray-50/25 mt-12">Genres</div>
 
                 <div class="flex mt-3 overflow-x-scroll w-full snap-mandatory snap-x">
                     <div v-for="genre in movie.genres"
-                         class="bg-gray-50/10 snap-center text-center rounded-lg mr-3 p-4  w-max text-xs pt-1 font-thin h-7 text-white text-ellipsis overflow-hidden">
+                         class="bg-gray-50/10 snap-center text-center rounded-lg mr-3 p-4  w-min text-xs pt-1 font-thin h-7  text-white text-ellipsis ">
                         <NuxtLink :to="'/genre-movie-'+genre.name+'/'+genre.id">
                             {{ genre.name }}
                         </NuxtLink>
