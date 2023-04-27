@@ -1,10 +1,10 @@
 <template>
     <homelayout>
-        <div class="flex h-40">
-            <div class="w-2/12 sm:block  hidden">
+        <div class="flex">
+            <div class="w-2/12 sm:block  ">
                 <SideMenu/>
             </div>
-            <div class="w-full mt-10  text-white overflow-y-auto h-screen">
+            <div class="w-full pt-10  text-white overflow-y-auto h-screen">
                 <div class="sm:h-[460px] snap-mandatory snap-x h-[250px] my-5 overflow-x-scroll  w-full flex">
                     <div v-if="!pending" v-for="(s,i) in slider['results']" class="w-22 group">
                         <NuxtLink :to="/movie/+s.id">
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="font-bold text-m text-gray-50/25 ml-5 mb-5">Upcomming Movies</div>
-                <div class=" my-5 overflow-x-scroll snap-mandatory snap-x  w-full flex ">
+                <div class=" my-5 overflow-x-scroll snap-mandatory snap-x  w-full flex pb-20">
                     <div v-if="!pending" v-for="(up,i) in upcomming_movies['results']"
                          class="group transition snap-start ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                         <NuxtLink :to="/movie/+up.id">
@@ -96,8 +96,15 @@
                         </NuxtLink>
                     </div>
                 </div>
+                <div class="text-center text-gray-700">
+                    Data Provided by
+                    <img class="w-24 h-20 mx-auto -mt-5" src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg"/>
+
+                </div>
             </div>
+
         </div>
+
 
     </homelayout>
 </template>
