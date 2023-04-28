@@ -1,7 +1,7 @@
 <template>
     <div class="snap-both">
         <div class="mx-3  rounded-xl" :style="{ 'height': '195px',
-                                                        'width': '139px',}">
+                                                        'width': '139px'}">
             <nuxt-img class="rounded-xl" :src="'https://image.tmdb.org/t/p/w300/'+image" width="300"
                       height="169"   :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname" lazy
                       :style="{' background-repeat':'no-repeat',
