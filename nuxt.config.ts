@@ -12,6 +12,8 @@ export default defineNuxtConfig({
         '@nuxtjs/moment',
 
     ],
+    loading: { color: '#333333', throttle: 0 },
+
 
     runtimeConfig: {
 
@@ -30,6 +32,7 @@ export default defineNuxtConfig({
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     app: {
+
         head: {
             bodyAttrs: {
                 class: 'bg-gray-900 no-scrollbar selection:bg-indigo-300 selection:text-fuchsia-900'

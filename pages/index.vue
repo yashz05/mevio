@@ -1,6 +1,6 @@
 <template>
     <homelayout>
-        <div v-if="!pending">
+        <div v-if="slider != null">
             <div class="w-full pt-10  text-white overflow-y-auto h-screen">
                 <div class="md:h-[460px] snap-mandatory snap-x h-[250px] my-5 overflow-x-scroll  w-full flex">
                     <div v-if="!pending" v-for="(s,i) in slider['results']" class="w-22 group">
@@ -130,6 +130,8 @@
 
         </div>
 
+        <div class="text-white">loading</div>
+
 
     </homelayout>
 </template>
@@ -153,3 +155,4 @@ const {data: top_tvshow} = await useFetch(`${runtimeConfig.public.apiBase}discov
 const {data: upcomming_movies} = await useFetch(`${runtimeConfig.public.apiBase}movie/upcoming?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`);
 const {data: genre} = await useFetch(runtimeConfig.public.apiBase + "genre/movie/list" + "?api_key=" + runtimeConfig.public.apiSecret)
 </script>
+

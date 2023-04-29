@@ -156,7 +156,22 @@
                 <li v-for="all in search_results['data']['results']" class="cursor-default select-none px-4 py-2"
                     role="option" tabindex="-1">
                     <NuxtLink :to="all.media_type !== 'movie' ? '/tv'+'/'+all.id :'/movie' +'/'+all.id">
-                        {{ all.media_type === 'movie' ? all["title"] : all['name'] }}
+                        <div class="flex" v-on:click="search_show =! search_show">
+                            <div class="mr-4 flex-shrink-0">
+                                <nuxt-img class="rounded-xl " :src="'https://image.tmdb.org/t/p/w300/'+all.poster_path"    :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+useRuntimeConfig().public.appname" lazy
+                                          :style="{' background-repeat':'no-repeat',
+                                                        'background-size':'cover',
+                                                        'height': '44px',
+                                                        'width': '44px',
+                                                        'z-index':-10
+                       }"/>
+
+                            </div>
+                            <div>
+                                <h4 class="text-md font-thin">{{ all.media_type === 'movie' ? all["title"] : all['name'] }}</h4>
+                                 </div>
+                        </div>
+
                     </NuxtLink>
                 </li>
 
