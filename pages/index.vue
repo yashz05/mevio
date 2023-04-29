@@ -137,6 +137,7 @@
 import moment from 'moment';
 import {ref} from "#imports";
 import Movie_card_1 from "~/components/movie_card_1.vue";
+
 const runtimeConfig = useRuntimeConfig()
 useHead({
     title: runtimeConfig.public.appname,

@@ -1,5 +1,6 @@
 <template>
     <homelayout>
+
         <youtube-video-popup :show="videopop" :id="videoid"/>
         <div class="text-white" v-if="movie == null">LOADING</div>
         <div v-else class="w-full pt-16">
@@ -123,23 +124,84 @@
                 <div class="flex mt-3">
                     <div v-for="genre in movie.genres"
                          class="bg-gray-50/10 text-center rounded-lg mr-3 p-4  text-xs pt-1 font-thin h-7 text-white text-ellipsis overflow-hidden">
-                        <NuxtLink :to="'/genre-tv-'+genre.name+'/'+genre.id" >  {{ genre.name }}</NuxtLink>
+                        <NuxtLink :to="'/genre-tv-'+genre.name+'/'+genre.id"> {{ genre.name }}</NuxtLink>
                     </div>
                 </div>
-                <div class="font-bold text-m text-gray-50/25 mt-12">Seasons</div>
-                <div class="flex mt-3   overflow-x-scroll">
-                    <div v-for="season in movie.seasons" :class="s_selected === season.name ? 'bg-gray-900' : ''"
-                         class="bg-gray-50/10 text-center w-44
-                         rounded-lg mr-3 p-4  text-xs pt-1
-                         font-thin h-12 text-white ">
-                        {{ season.name }}
+                <div v-if="movie.seasons.length > 0" class="font-bold text-m text-gray-50/25 mt-12">Latest Seasons</div>
+                <!--                    MOBILE /TAB  START -->
+                <div v-if="movie.seasons.length > 0" class=" md:hidden block mt-3   overflow-x-scroll">
+                    <div class="w-full flex bg-gray-800">
+                        <div class="md:w-[150px] w-[100px]">
+                            <nuxt-img class=""
+                                      :src="'https://image.tmdb.org/t/p/w300/'+movie.seasons.at(-1).poster_path"
+                                      :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"></nuxt-img>
+                        </div>
+                        <div class="py-4 px-5 text-white sm:w-1/2">
+                            <div class="text-gray-300 text-sm">
+                                <div class="font-bold text-lg">
+                                    {{ movie.seasons.at(-1).name }}
+                                </div>
+                                <div class="font-bold text-sm">
+                                    {{ movie.seasons.at(-1).episode_count }} Episodes
+                                </div>
+                                <div class="font-thin md:block hidden text-sm line-clamp-4 ">
+                                    {{ movie.seasons.at(-1).overview }}
+                                </div>
+                            </div>
+                            <div class="text-gray-300 text-sm">
+                                <div>
+                                    Air Date {{ movie.seasons.at(-1).air_date }}
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
+                <!--                    MOBILE /TAB END -->
+                <!--  LARGE SCREEN START-->
+                <div v-if="movie.seasons.length > 0" class=" md:block hidden mt-3 overflow-x-scroll">
+                    <div class="grid grid-flow-col auto-cols-max gap-2 snap-mandatory snap-x">
+                        <div v-for="(m,k) in movie.seasons.reverse()"
+                             class=" relative flex w-[550px] h-[150px] snap-start bg-gray-800" >
+
+                            <div>
+                                <nuxt-img class="md:w-[100px] w-[100px] "
+                                          :src="'https://image.tmdb.org/t/p/w300/'+m.poster_path"
+                                          :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"></nuxt-img>
+                            </div>
+                            <div class="py-4 px-5 text-white sm:w-1/2">
+                                <div class="text-gray-300 text-sm">
+                                    <div class="font-bold text-lg">
+                                        {{ m.name }}
+                                    </div>
+                                    <div class="font-bold text-sm">
+                                        {{ m.episode_count }} Episodes
+                                    </div>
+                                    <div class="font-thin md:block hidden text-sm h-[50px] truncate line-clamp-2 ">
+                                        {{ m.overview }}
+                                    </div>
+                                </div>
+                                <div class="text-gray-300 text-sm">
+                                    <div>
+                                        Air Date {{ m.air_date }}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!--  LARGE SCREEN END-->
                 <div v-if="casts['cast'].length > 0" class="font-bold text-m text-gray-50/25 mt-5">Casts</div>
-                <div class="h-[170px] mt-3  overflow-x-scroll  w-full flex">
+                <div v-if="casts['cast'].length > 0" class="h-[170px] mt-3  overflow-x-scroll  w-full flex">
                     <div v-if="casts != null" v-for="cast in casts['cast']"
                     >
-
                         <nuxt-link :to="'/cast-'+cast.original_name.replace(' ', '_')+'/'+cast.id">
 
 
@@ -187,7 +249,8 @@
                 </div>
                 <div class="text-center text-gray-700">
                     Data Provided by
-                    <img class="w-24 h-20 mx-auto -mt-5" src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg"/>
+                    <img class="w-24 h-20 mx-auto -mt-5"
+                         src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg"/>
 
                 </div>
             </div>
@@ -211,6 +274,7 @@ const {
     data: movie
 } = useLazyFetch(`${runtimeConfig.public.apiBase}tv/${route.params.id}?api_key=${runtimeConfig.public.apiSecret}&language=en-US`)
 watch(movie, (moviedetail) => {
+
     useHead({
         title: moviedetail["title"] || runtimeConfig.public.appname,
         ogTitle: moviedetail["title"] || runtimeConfig.public.appname,
@@ -233,6 +297,7 @@ function video_popup(show, id) {
 
 
 const [{data: casts}, {data: recommended_tvshow}, {data: videos}] = await Promise.all([
+
     useFetch(`${runtimeConfig.public.apiBase}tv/${route.params.id}/credits?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
     useFetch(`${runtimeConfig.public.apiBase}tv/${route.params.id}/recommendations?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
     useFetch(`${runtimeConfig.public.apiBase}tv/${route.params.id}/videos?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`),
