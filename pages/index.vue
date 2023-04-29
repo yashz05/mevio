@@ -14,7 +14,7 @@
                                                         width : '100vw',
                                                         'z-index':-10
                                                }">
-                                <div class="absolute  bg-gradient-to-t  from-black w-full text-center transition-all ease-in-out duration-300 h-44 bottom-0 font-bold text-3xl ">
+                                <div class="absolute  bg-gradient-to-t  from-black w-full text-center transition-all ease-in-out duration-300 h-44 bottom-0 font-bold text-3xl">
                                     <div class="mt-12 hover:text-red-500">
                                         {{ s['media_type'] == 'movie' ? s["title"] : s['name'] }}
                                     </div>
@@ -39,10 +39,10 @@
                                                                            }">
 
 
-                                <div class="w-[70vw] absolute z-10
-                                left-0 h-[500px] bg-gradient-to-r bg-transparent from-black from-65% to-transparent ">
+                                <div class="w-[65vw] absolute z-10
+                                left-0 h-[500px] bg-gradient-to-r bg-transparent from-black from-65% to-transparent  ">
                                     <div class="mt-10 ">
-                                        <div class="font-black text-5xl px-7 ">
+                                        <div class="font-black text-5xl px-7 w-[50vw]">
                                             {{ s['media_type'] == 'movie' ? s["title"] : s['name'] }}
                                         </div>
                                         <div class="w-1/2 px-7 py-5 text-gray-600   line-clamp-4 ">
@@ -67,7 +67,8 @@
 
                                     </div>
                                 </div>
-
+                                <div class="w-[100px] absolute -z-10
+                                left-[44%] h-[500px] bg-gradient-to-r bg-transparent from-black from-65% to-transparent  origin-bottom -rotate-12"></div>
                             </div>
 
                             <!--BIG SCREEN END-->

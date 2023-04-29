@@ -127,46 +127,14 @@
                     </div>
                 </div>
                 <div v-if="movie.seasons.length > 0" class="font-bold text-m text-gray-50/25 mt-12">Seasons</div>
-                <!--                    MOBILE /TAB  START -->
-                <div v-if="movie.seasons.length > 0" class=" md:hidden block mt-3   overflow-x-scroll">
-                    <div class="w-full flex bg-gray-800">
-                        <div class="md:w-[150px] w-[100px]">
-                            <nuxt-img class=""
-                                      :src="'https://image.tmdb.org/t/p/w300/'+movie.seasons.at(-1).poster_path"
-                                      :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"></nuxt-img>
-                        </div>
-                        <div class="py-4 px-5 text-white sm:w-1/2">
-                            <div class="text-gray-300 text-sm">
-                                <div class="font-bold text-lg">
-                                    {{ movie.seasons.at(-1).name }}
-                                </div>
-                                <div class="font-bold text-sm">
-                                    {{ movie.seasons.at(-1).episode_count }} Episodes
-                                </div>
-                                <div class="font-thin md:block hidden text-sm line-clamp-4 ">
-                                    {{ movie.seasons.at(-1).overview }}
-                                </div>
-                            </div>
-                            <div class="text-gray-300 text-sm">
-                                <div>
-                                    Air Date {{ movie.seasons.at(-1).air_date }}
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <!--                    MOBILE /TAB END -->
                 <!--  LARGE SCREEN START-->
                 <div v-if="movie.seasons.length > 0"
-                     class=" md:block hidden mt-3 snap-mandatory snap-x overflow-x-scroll">
+                     class="  mt-3 snap-mandatory snap-x overflow-x-scroll">
 
 
                     <div class="grid grid-flow-col auto-cols-max gap-2 ">
                         <div v-for="(m,k) in movie.seasons"
-                             class=" relative  w-[550px] h-[150px] snap-start bg-gray-800">
+                             class=" relative w-[98%] sm:w-[550px] h-[150px] snap-start bg-gray-800 hover:bg-gray-800/50 hover:shadow-lg">
 
 
                             <NuxtLink :to="'episodes-'+route.params.id+'/'+m.season_number" class="flex">
@@ -178,7 +146,7 @@
                                 </div>
                                 <div class="py-4 px-5 text-white sm:w-1/2">
                                     <div class="text-gray-300 text-sm">
-                                        <div class="font-bold text-lg">
+                                        <div class="font-bold text-lg hover:underline decoration-dashed decoration-indigo-400 underline-offset-2">
                                             {{ m.name }}
                                         </div>
                                         <div class="font-bold text-sm">
