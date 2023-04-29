@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     app: {
         head: {
             bodyAttrs: {
-                class: 'bg-gray-900 no-scrollbar'
+                class: 'bg-gray-900 no-scrollbar selection:bg-indigo-300 selection:text-fuchsia-900'
             },
             title: 'Movie website',
             htmlAttrs: {

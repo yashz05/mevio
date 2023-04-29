@@ -1,6 +1,5 @@
 <template>
     <homelayout>
-
         <youtube-video-popup :show="videopop" :id="videoid"/>
         <div class="text-white" v-if="movie == null">LOADING</div>
         <div v-else class="w-full pt-16">
@@ -127,7 +126,7 @@
                         <NuxtLink :to="'/genre-tv-'+genre.name+'/'+genre.id"> {{ genre.name }}</NuxtLink>
                     </div>
                 </div>
-                <div v-if="movie.seasons.length > 0" class="font-bold text-m text-gray-50/25 mt-12">Latest Seasons</div>
+                <div v-if="movie.seasons.length > 0" class="font-bold text-m text-gray-50/25 mt-12">Seasons</div>
                 <!--                    MOBILE /TAB  START -->
                 <div v-if="movie.seasons.length > 0" class=" md:hidden block mt-3   overflow-x-scroll">
                     <div class="w-full flex bg-gray-800">
@@ -161,35 +160,42 @@
                 </div>
                 <!--                    MOBILE /TAB END -->
                 <!--  LARGE SCREEN START-->
-                <div v-if="movie.seasons.length > 0" class=" md:block hidden mt-3 overflow-x-scroll">
-                    <div class="grid grid-flow-col auto-cols-max gap-2 snap-mandatory snap-x">
-                        <div v-for="(m,k) in movie.seasons.reverse()"
-                             class=" relative flex w-[550px] h-[150px] snap-start bg-gray-800" >
+                <div v-if="movie.seasons.length > 0"
+                     class=" md:block hidden mt-3 snap-mandatory snap-x overflow-x-scroll">
 
-                            <div>
-                                <nuxt-img class="md:w-[100px] w-[100px] "
-                                          :src="'https://image.tmdb.org/t/p/w300/'+m.poster_path"
-                                          :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"></nuxt-img>
-                            </div>
-                            <div class="py-4 px-5 text-white sm:w-1/2">
-                                <div class="text-gray-300 text-sm">
-                                    <div class="font-bold text-lg">
-                                        {{ m.name }}
+
+                    <div class="grid grid-flow-col auto-cols-max gap-2 ">
+                        <div v-for="(m,k) in movie.seasons"
+                             class=" relative  w-[550px] h-[150px] snap-start bg-gray-800">
+
+
+                            <NuxtLink :to="'episodes-'+route.params.id+'/'+m.season_number" class="flex">
+
+                                <div>
+                                    <nuxt-img class="md:w-[100px] w-[100px] "
+                                              :src="'https://image.tmdb.org/t/p/w300/'+m.poster_path"
+                                              :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"></nuxt-img>
+                                </div>
+                                <div class="py-4 px-5 text-white sm:w-1/2">
+                                    <div class="text-gray-300 text-sm">
+                                        <div class="font-bold text-lg">
+                                            {{ m.name }}
+                                        </div>
+                                        <div class="font-bold text-sm">
+                                            {{ m.episode_count }} Episodes
+                                        </div>
+                                        <div class="font-thin md:block hidden text-sm h-[50px] truncate line-clamp-2 ">
+                                            {{ m.overview }}
+                                        </div>
                                     </div>
-                                    <div class="font-bold text-sm">
-                                        {{ m.episode_count }} Episodes
-                                    </div>
-                                    <div class="font-thin md:block hidden text-sm h-[50px] truncate line-clamp-2 ">
-                                        {{ m.overview }}
+                                    <div class="text-gray-300 text-sm">
+                                        <div>
+                                            Air Date {{ m.air_date }}
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="text-gray-300 text-sm">
-                                    <div>
-                                        Air Date {{ m.air_date }}
-                                    </div>
-
-                                </div>
-                            </div>
+                            </NuxtLink>
 
                         </div>
 
@@ -202,7 +208,7 @@
                 <div v-if="casts['cast'].length > 0" class="h-[170px] mt-3  overflow-x-scroll  w-full flex">
                     <div v-if="casts != null" v-for="cast in casts['cast']"
                     >
-                        <nuxt-link :to="'/cast-'+cast.original_name.replace(' ', '_')+'/'+cast.id">
+                        <NuxtLink :to="'/cast-'+cast.original_name.replace(' ', '_')+'/'+cast.id">
 
 
                             <div style="height: 100px;width: 100px" class="mx-2 relative ">
@@ -222,7 +228,7 @@
                                 </div>
 
                             </div>
-                        </nuxt-link>
+                        </NuxtLink>
                         <div class="font-bold text-sm text-center text-gray-50/25 mt-2">{{ cast.original_name }}</div>
                     </div>
                 </div>

@@ -78,7 +78,7 @@
                     <div class="">
                         <div class="border-b border-gray-900 px-4">
 
-                            <nav class=" flex space-x-8 snap-mandatory snap-x -mt-3 mb-0 overflow-x-scroll w-full "
+                            <nav class=" flex space-x-8 snap-mandatory snap-x -mt-3 mb-0 overflow-x-scroll overflow-y-hidden w-full "
                                  aria-label="Tabs">
                                 <NuxtLink :to="'/genre-movie-'+g.name+'/'+g.id" v-for="g in genre['genres']"
                                           class="border-transparent snap-start text-gray-400 hover:text-indigo-400 hover:border-indigo-300 whitespace-nowrap pb-2 px-1 border-b-2 font-bold text-md">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="w-full h-3 bg-black"></div>
                 </div>
-                <div class="font-bold text-m text-gray-50/25 ml-5 mb-5">Top Rated Movies</div>
+                <div class="font-bold text-m text-gray-50/25 ml-5 mb-5 mt-2">Top Rated Movies</div>
                 <div class=" my-5 overflow-x-scroll snap-mandatory snap-x  w-full flex ">
                     <div v-if="!pending" v-for="(tm,i) in top_movies['results']"
                          class="group transition snap-start ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
