@@ -24,6 +24,7 @@ export default defineNuxtConfig({
             appname: 'Mevio',
             apiBase: 'https://api.themoviedb.org/3/',
             apiSecret: 'e17a6dcd6b3e85fcc2b1207a20002539',
+
         }
     },
 
