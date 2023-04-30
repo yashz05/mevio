@@ -20,36 +20,34 @@ So you will need api keys from TMDB
 https://mevio.vercel.app
 
 
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
 
 
 ## 📸 Screenshots
 
-![HOME](https://api.pikwy.com/web/644a70ab007cb154693c5a4c.jpg)
-![App Screenshot](https://api.pikwy.com/web/644a7078e8529c55d30a6c55.jpg)
+Few Screenshots may be old 
 
-
-
-![App Screenshot](https://api.pikwy.com/web/644a70f2fa74e2406c5ea9ef.jpg)
-
-
-
-![App Screenshot](https://api.pikwy.com/web/644a70f2fa74e2406c5ea9ef.jpg)
-
-
-![App Screenshot](https://api.pikwy.com/web/644a7167871f14149b73218d.jpg)
+![HOME](https://api.pikwy.com/web/644e79b4ba2a6e3afe1bc79f.jpg)
+![Movie Info](https://api.pikwy.com/web/644e79f2bdd0192270150f26.jpg)
+![Movie Info](https://i.ibb.co/Fg5t9v0/Screenshot-2023-04-30-at-8-00-26-PM.png)
+![Cast PAge](https://i.ibb.co/F7Km3Rd/image.png)
+![Cast PAge](https://api.pikwy.com/web/644a70f2fa74e2406c5ea9ef.jpg)
+![Genre](https://api.pikwy.com/web/644a7167871f14149b73218d.jpg)
+![Genre](https://i.ibb.co/gDhzmkL/Screenshot-2023-04-30-at-7-59-13-PM.png)
 ## 📀 Installation
 
 Getting started
+
+
 
 ```bash
   git clone https://github.com/yashz05/mevio.git
 
 ```
-    
+
+
+
+
+
 Change Directory
 ```bash
   cd mevio
@@ -61,6 +59,18 @@ Npm install
   npm install
 
 ```
+
+Edit nuxt.config.ts file
+and replace following with your details and Api Key from
+https://www.themoviedb.org/documentation/api
+
+``` 
+appname: 'Mevio',
+apiBase: 'https://api.themoviedb.org/3/',
+apiSecret: 'e17a6dcd6b3e85fcc2b1207a20002539',
+ ```
+
+
 Run in Debug Mode
 ```bash
   npm run dev
@@ -76,3 +86,9 @@ Privew in Production Mode
   npm run preview
 
 ```
+# 🚨 Important
+We appreciate your help in identifying any bugs and will work to address them as quickly as possible. Your feedback is valuable to us and we thank you for your contribution to this project.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

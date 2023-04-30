@@ -6,8 +6,8 @@
             <div class="relative flex justify-between h-16">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     <!-- Mobile menu button -->
-                    <button type="button"
-                            class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                    <button type="button" v-on:click="mobile_menu=!mobile_menu"
+                            class="inline-flex items-center justify-center p-2 rounded-md text-white "
                             aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <!--
@@ -17,7 +17,7 @@
 
                           Menu open: "hidden", Menu closed: "block"
                         -->
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        <svg v-if="!mobile_menu" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M4 6h16M4 12h16M4 18h16"/>
@@ -29,20 +29,12 @@
 
                           Menu open: "block", Menu closed: "hidden"
                         -->
-                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
+                        <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z" fill="currentColor" /></svg>
                     </button>
                 </div>
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex-shrink-0 flex items-center">
-                        <!--                        <img class="block lg:hidden h-8 w-auto"-->
-                        <!--                             src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">-->
-                        <!--                        <img class="hidden lg:block h-8 w-auto"-->
-                        <!--                             src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"-->
-                        <!--                             alt="Workflow">-->
+
                         <NuxtLink class="order-1 font-bold text-3xl" to="/">
                             Mevio
                         </NuxtLink>
@@ -54,19 +46,17 @@
                             Dashboard </a>
                         <a href="#"
                            class="border-transparent text-white hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Team </a>
+                            Movies </a>
                         <a href="#"
                            class="border-transparent text-white hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Projects </a>
-                        <a href="#"
-                           class="border-transparent text-white hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Calendar </a>
+                            Tv Shows </a>
+
                     </div>
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <button type="button" v-on:click="search_show =! search_show"
                             class=" p-1 rounded-full text-gray-400 hover:text-gray-500 ">
-                        <span class="sr-only">View notifications</span>
+                        <span class="sr-only">Search</span>
                         <!-- Heroicon name: outline/bell -->
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -75,50 +65,22 @@
                         </svg>
                     </button>
 
-                    <!--                    &lt;!&ndash; Profile dropdown &ndash;&gt;-->
-                    <!--                    <div class="ml-3 relative">-->
-                    <!--                        <div>-->
-                    <!--                            <button type="button" class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">-->
-                    <!--                                <span class="sr-only">Open user menu</span>-->
-                    <!--                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">-->
-                    <!--                            </button>-->
-                    <!--                        </div>-->
-
-                    <!--                        &lt;!&ndash;-->
-                    <!--                          Dropdown menu, show/hide based on menu state.-->
-
-                    <!--                          Entering: "transition ease-out duration-200"-->
-                    <!--                            From: "transform opacity-0 scale-95"-->
-                    <!--                            To: "transform opacity-100 scale-100"-->
-                    <!--                          Leaving: "transition ease-in duration-75"-->
-                    <!--                            From: "transform opacity-100 scale-100"-->
-                    <!--                            To: "transform opacity-0 scale-95"-->
-                    <!--                        &ndash;&gt;-->
-                    <!--                        <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">-->
-                    <!--                            &lt;!&ndash; Active: "bg-gray-100", Not Active: "" &ndash;&gt;-->
-                    <!--                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>-->
-                    <!--                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>-->
-                    <!--                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                 </div>
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <!--        <div class="sm:hidden" id="mobile-menu">-->
-        <!--            <div class="pt-2 pb-4 space-y-1">-->
-        <!--                &lt;!&ndash; Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" &ndash;&gt;-->
-        <!--                <a href="#"-->
-        <!--                   class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Dashboard</a>-->
-        <!--                <a href="#"-->
-        <!--                   class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Team</a>-->
-        <!--                <a href="#"-->
-        <!--                   class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Projects</a>-->
-        <!--                <a href="#"-->
-        <!--                   class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Calendar</a>-->
-        <!--            </div>-->
-        <!--        </div>-->
+
+                <div v-if="mobile_menu"  class="sm:hidden" id="mobile-menu">
+                    <div class="pt-2 pb-4 space-y-1">
+                        <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
+                        <a href="#"
+                           class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Dashboard</a>
+                        <a href="#"
+                           class="border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Movies</a>
+                        <a href="#"
+                           class="border-transparent white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Tv Shows</a>
+                                      </div>
+                </div>
 
         <div>
             <LazyNuxtLoadingIndicator :height="5" :duration="1000"/>
@@ -242,7 +204,8 @@ export default {
         return {
             search_show: false,
             search: null,
-            search_results: null
+            search_results: null,
+            mobile_menu : false
 
 
         }
