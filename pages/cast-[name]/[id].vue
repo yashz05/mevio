@@ -108,16 +108,7 @@ const {
         "api_key": runtimeConfig.public.apiSecret
     }
 })
-// const {
-//     data: known_for
-// }  = await useFetch(`${runtimeConfig.public.apiBase}find/${cast.imdb_id}`,
-//     {
-//         query: {
-//             "api_key": runtimeConfig.public.apiSecret,
-//             "language": "en-US",
-//             "external_source": "imdb_id"
-//         }
-//     })
+
 watch(cast, (castdetails) => {
 
 

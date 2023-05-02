@@ -33,6 +33,12 @@ Few Screenshots may be old
 ![Cast PAge](https://api.pikwy.com/web/644a70f2fa74e2406c5ea9ef.jpg)
 ![Genre](https://api.pikwy.com/web/644a7167871f14149b73218d.jpg)
 ![Genre](https://i.ibb.co/gDhzmkL/Screenshot-2023-04-30-at-7-59-13-PM.png)
+
+Tried To Optimize
+https://gtmetrix.com/reports/mevio.vercel.app/9WKF8wm3/
+
+
+![Genre](https://i.ibb.co/DkJJvmr/image.png)
 ## 📀 Installation
 
 Getting started

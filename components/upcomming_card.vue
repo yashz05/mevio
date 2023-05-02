@@ -4,8 +4,8 @@
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': '100% 180%',
                                                                 'background-position': '0% 80%',
-                                                                'height': '222px',
-                                                                'width': '345px',
+                                                                'height': '150px',
+                                                                'width': '210px',
                                                         'z-index':-10
                                                }">
 
@@ -21,7 +21,7 @@
                 </svg>
             </div>
             <div class="ml-3">{{ rate }}</div>
-            <!--            <div class="ml-3 text-xs">{{year}}  </div>-->
+
         </div>
     </div>
 
