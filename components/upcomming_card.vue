@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class=" mx-3 rounded-xl" :style="{ background: `url('https://image.tmdb.org/t/p/original/${image}')  `,
+        <div class=" mx-3 rounded-xl" :style="{ background: `url('https://image.tmdb.org/t/p/w300/${image}')  `,
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': '100% 180%',
                                                                 'background-position': '0% 80%',

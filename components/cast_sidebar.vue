@@ -1,7 +1,7 @@
 <template>
     <div class="sm:block pt-14 hidden sm:h-screen overflow-y-scroll">
            <div class="m-1 " >
-               <nuxt-img :src='"https://image.tmdb.org/t/p/w300"+cast.profile_path'
+               <nuxt-img :src='"https://image.tmdb.org/t/p/w185"+cast.profile_path'
                          :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                          class="  relative rounded-l h-56 w-[70%] bg-gray-900 mt-10 mb-4 mx-auto " :style="{
                                                         'z-index':-10

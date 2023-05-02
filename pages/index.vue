@@ -1,6 +1,6 @@
 <template>
 <!--    TODO:CHECK SUSPENSE -->
-    <Suspense >
+    <Suspense @pending="pending">
         <template #default>
             <homelayout v-if="!error">
                 <div >
@@ -10,7 +10,7 @@
                                 <NuxtLink :to="`/${s.media_type}/${s.id}`">
                                     <!--  MOBILE START -->
                                     <div class="relative snap-center   md:hidden" v-if="i <= 4" :style="{
-                                                   background: `url('https://image.tmdb.org/t/p/original/${s['backdrop_path']}')`,
+                                                   background: `url('https://image.tmdb.org/t/p/w500/${s['backdrop_path']}')`,
                                                       ' background-repeat':'no-repeat',
                                                         'background-size':'cover',
                                                         'height':'250px',
@@ -32,7 +32,7 @@
                                     <!--BIG SCREEN START-->
                                     <div class=" h-[500px] relative w-screen overflow-y-hidden  justify-center snap-center hidden bg-black bg-no-repeat  md:block "
                                          :style="{
-                                                                               background: `url('https://image.tmdb.org/t/p/original/${s['backdrop_path']}')`,
+                                                                               background: `url('https://image.tmdb.org/t/p/w780/${s['backdrop_path']}')`,
                                                                                     'background-size':'contain',
                                                                                     'background-position': '100% , 0px',
                                                                                      'background-repeat': 'no-repeat',
@@ -161,7 +161,12 @@ const {
     error,
 
     data: slider
-} = useFetch(runtimeConfig.public.apiBase + "trending/all/day" + "?api_key=" + runtimeConfig.public.apiSecret)
+} = useFetch(runtimeConfig.public.apiBase + "trending/all/day",{
+    params : {
+        "api_key" : runtimeConfig.public.apiSecret
+    },
+    immediate : true
+})
 const {data: top_movies} = await useFetch(`${runtimeConfig.public.apiBase}discover/movie?api_key=${runtimeConfig.public.apiSecret}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
 const {data: top_tvshow} = await useFetch(`${runtimeConfig.public.apiBase}discover/tv?api_key=${runtimeConfig.public.apiSecret}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0`);
 const {data: upcomming_movies} = await useFetch(`${runtimeConfig.public.apiBase}movie/upcoming?api_key=${runtimeConfig.public.apiSecret}&language=en-US&page=1`);

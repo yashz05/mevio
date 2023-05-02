@@ -11,7 +11,7 @@
                               :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                               class="w-full relative" :style="{
                                                                 'background-repeat': 'no-repeat',
-                                                                'background-size': 'contain',
+                                                                'background-size': 'cover',
                                                                 'background-position': 'center center',
                                                                 'height': '60vh',
                                                                 'width': '100vw',

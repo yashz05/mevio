@@ -58,7 +58,7 @@
             <!-- MOBILE SCREEN END -->
 <!--BIG SCREEN START-->
             <div class="w-full hidden sm:block relative" :style="{
-                                                   background: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')  `,
+                                                   background: `url('https://image.tmdb.org/t/p/w780/${movie.backdrop_path}')  `,
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',
                                                                 'background-position': '0% 50%',
@@ -72,7 +72,7 @@
 
 
                 <div class="absolute  bottom-10 ml-10 flex">
-                    <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+movie.poster_path'
+                    <nuxt-img :src='"https://image.tmdb.org/t/p/w185/"+movie.poster_path'
                               :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                               class="sm:w-[170px] sm:h-[250px] rounded-xl sm:mx-0  mx-auto w-[140px] -mb-20"/>
 
@@ -138,7 +138,7 @@
 
 
                             <div style="height: 100px;width: 100px" class="mx-2 relative ">
-                                <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path'
+                                <nuxt-img :src='"https://image.tmdb.org/t/p/w154/"+cast.profile_path'
                                           class="rounded-lg object-cover"
                                           :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                                           :style="{

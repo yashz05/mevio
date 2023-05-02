@@ -4,7 +4,7 @@
         <div class="text-white" v-if="movie == null">LOADING</div>
         <div v-else class="w-full pt-16">
             <div class="w-full sm:hidden block relative" :style="{
-                                                   background: `url('https://image.tmdb.org/t/p/original/${movie.poster_path}')  `,
+                                                   background: `url('https://image.tmdb.org/t/p/w500/${movie.poster_path}')  `,
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',
                                                                 'background-position': 'center center',
@@ -59,7 +59,7 @@
 
 
             <div class="w-full hidden sm:block relative" :style="{
-                                                   background: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')  `,
+                                                   background: `url('https://image.tmdb.org/t/p/w780/${movie.backdrop_path}')  `,
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',
                                                                 'background-position': '0% 50%',
@@ -73,7 +73,7 @@
 
 
                 <div class="absolute  bottom-10 ml-10 flex">
-                    <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+movie.poster_path'
+                    <nuxt-img :src='"https://image.tmdb.org/t/p/w185/"+movie.poster_path'
                               :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                               class="sm:w-[170px] sm:h-[250px] rounded-xl sm:mx-0  mx-auto w-[140px] -mb-20"/>
 
@@ -141,7 +141,7 @@
 
                                 <div>
                                     <nuxt-img class="md:w-[100px] w-[100px] "
-                                              :src="'https://image.tmdb.org/t/p/w300/'+m.poster_path"
+                                              :src="'https://image.tmdb.org/t/p/w185/'+m.poster_path"
                                               :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"></nuxt-img>
                                 </div>
                                 <div class="py-4 px-5 text-white sm:w-1/2">
@@ -180,7 +180,7 @@
 
 
                             <div style="height: 100px;width: 100px" class="mx-2 relative ">
-                                <nuxt-img :src='"https://image.tmdb.org/t/p/w300/"+cast.profile_path'
+                                <nuxt-img :src='"https://image.tmdb.org/t/p/w154/"+cast.profile_path'
                                           class="rounded-lg object-cover"
                                           :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                                           :style="{
