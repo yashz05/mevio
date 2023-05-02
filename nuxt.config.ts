@@ -7,12 +7,12 @@ export default defineNuxtConfig({
 
     modules: ['@nuxtjs/tailwindcss', '@nuxt/image-edge',],
     // @ts-ignore
-    target : 'server',
+
     buildModules: [
         '@nuxtjs/moment',
 
     ],
-    loading: { color: '#333333', throttle: 0 },
+    loading: '~/components/loading.vue',
 
 
     runtimeConfig: {
@@ -23,13 +23,13 @@ export default defineNuxtConfig({
         public: {
             appname: 'Mevio',
             apiBase: 'https://api.themoviedb.org/3/',
-            apiSecret: 'e17a6dcd6b3e85fcc2b1207a20002539',
+            apiSecret: process.env["apiKey"],
 
         }
     },
 
     // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-    // ssr: false,
+    ssr: true,
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     app: {
