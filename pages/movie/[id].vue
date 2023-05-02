@@ -6,7 +6,7 @@
         <div v-else class="w-full pt-16">
 
             <!-- MOBILE SCREEN START -->
-            <div class="w-full sm:hidden block relative">
+            <div class="w-full sm:hidden block relative animate__animated animate__fadeIn">
                 <nuxt-img :src='"https://image.tmdb.org/t/p/w500/"+movie.poster_path'
                           :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                           class="w-full sm:hidden block  relative  h-[60vh] -z-10 bg-no-repeat bg-top bg-cover" />
@@ -57,7 +57,7 @@
             </div>
             <!-- MOBILE SCREEN END -->
 <!--BIG SCREEN START-->
-            <div class="w-full hidden sm:block relative" :style="{
+            <div class="w-full hidden sm:block relative animate__animated animate__fadeIn" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/w780/${movie.backdrop_path}')  `,
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',
@@ -74,7 +74,7 @@
                 <div class="absolute  bottom-10 ml-10 flex">
                     <nuxt-img :src='"https://image.tmdb.org/t/p/w185/"+movie.poster_path'
                               :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
-                              class="sm:w-[170px] sm:h-[250px] rounded-xl sm:mx-0  mx-auto w-[140px] -mb-20"/>
+                              class="sm:w-[170px] sm:h-[250px] rounded-xl sm:mx-0  mx-auto w-[140px] -mb-20 "/>
 
                     <div class="text-white mx-4 my-3">
                         <div class="text-3xl"> {{ movie.title }}</div>
@@ -179,7 +179,7 @@
                          class="group transition ease-in-out delay-150  snap-start pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                         <NuxtLink :to="/movie/+rm.id">
                             <movie_card_1 :name="rm.title" :image="rm.poster_path" :rate="rm.vote_average"
-                                          :year="rm.release_date"></movie_card_1>
+                                          :year="rm.release_date" type="movie"></movie_card_1>
                         </NuxtLink>
                     </div>
                 </div>

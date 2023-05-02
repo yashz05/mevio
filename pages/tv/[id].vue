@@ -217,7 +217,7 @@
                          class="group transition ease-in-out delay-75  pt-2 hover:-translate-y-1 hover:scale-105">
                         <NuxtLink :to="/tv/+rm.id">
                             <movie_card_1 :name="rm.title" :image="rm.poster_path" :rate="rm.vote_average"
-                                          :year="rm.release_date"></movie_card_1>
+                                          :year="rm.release_date" type="tv"></movie_card_1>
                         </NuxtLink>
                     </div>
                 </div>

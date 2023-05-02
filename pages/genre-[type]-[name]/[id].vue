@@ -1,14 +1,14 @@
 <template>
     <homelayout>
         <div class="pt-20 font-bold text-m text-gray-50/25 ml-5 mb-5" v-on:click="new_page">
-            {{ type.toString().toUpperCase() + '~' + name }}
+            {{  name.toString().toUpperCase() }}
         </div>
         <div class="mx-2 my-5  overflow-x-hidden grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 gap-2" @scroll="scroll">
             <div v-if="!pending" v-for="(tm,i) in movies['results']"
                  class="group transition ease-in-out delay-150 mx-auto  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                 <NuxtLink :to="('first_air_date' in tm) ? '/tv'+'/'+tm.id :'/movie' +'/'+tm.id">
                     <movie_card_1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"
-                                  :year="tm.release_date"></movie_card_1>
+                                  :year="tm.release_date" :type="('first_air_date' in tm) ? 'tv' : 'movie'"></movie_card_1>
                 </NuxtLink>
             </div>
 
@@ -38,13 +38,48 @@ function new_page() {
         const {
             pending,
             data: new_movies
-        } = useFetch(`${runtimeConfig.public.apiBase}discover/${type}?api_key=${runtimeConfig.public.apiSecret}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${page_no.value}&with_genres=${route.params.id}&with_watch_monetization_types=flatrate`)
+        } = useFetch(`${runtimeConfig.public.apiBase}discover/movie`, {
+            params: {
+                "api_key": runtimeConfig.public.apiSecret,
+                "language": "en-US",
+                "sort_by": "popularity.desc",
+                "include_adult": true,
+                "include_video": false,
+                "page": page_no,
+                "with_genres": route.params.id,
+                "with_watch_monetization_types": "flatrate"
+
+            }
+        });
+        const {
+            pending2,
+            data: new_shows
+        } = useFetch(`${runtimeConfig.public.apiBase}discover/tv`, {
+            params: {
+                "api_key": runtimeConfig.public.apiSecret,
+                "language": "en-US",
+                "sort_by": "popularity.desc",
+                "include_adult": true,
+                "include_video": false,
+                "page": page_no,
+                "with_genres": route.params.id,
+                "with_watch_monetization_types": "flatrate"
+
+            }
+        })
         watch(new_movies, (newCount) => {
             for (let i = 0; i < newCount['results'].length; i++) {
                 movies.value.results.push(newCount['results'][i])
             }
 
         })
+        watch(new_shows, (newCount) => {
+            for (let i = 0; i < newCount['results'].length; i++) {
+                movies.value.results.push(newCount['results'][i])
+            }
+
+        })
+
     }
 
 }
@@ -66,7 +101,19 @@ const {
     pending,
     data: movies,
     refresh
-} = useLazyFetch(`${runtimeConfig.public.apiBase}discover/${type}?api_key=${runtimeConfig.public.apiSecret}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${page_no.value}&with_genres=${route.params.id}&with_watch_monetization_types=flatrate`);
+} = useLazyFetch(`${runtimeConfig.public.apiBase}discover/${type}`, {
+    params: {
+        "api_key": runtimeConfig.public.apiSecret,
+        "language": "en-US",
+        "sort_by": "popularity.desc",
+        "include_adult": true,
+        "include_video": false,
+        "page": 1,
+        "with_genres": route.params.id,
+        "with_watch_monetization_types": "flatrate"
+
+    }
+});
 watch(movies, (newCount) => {
     useHead({
         title: "Genre " + name || runtimeConfig.public.appname,

@@ -7,7 +7,7 @@
                     <div v-if="!pending" v-for="(s,i) in slider['results']" class="w-22 group">
                         <NuxtLink :to="`/${s.media_type}/${s.id}`">
                             <!--  MOBILE START -->
-                            <div class="relative snap-center   md:hidden" v-if="i <= 4" :style="{
+                            <div class="relative snap-center animate__animated animate__fadeIn   md:hidden" v-if="i <= 4" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/w500/${s['backdrop_path']}')`,
                                                       ' background-repeat':'no-repeat',
                                                         'background-size':'cover',
@@ -28,7 +28,7 @@
 
                             <!-- MOBILE END-->
                             <!--BIG SCREEN START-->
-                            <div class=" h-[500px] relative w-screen overflow-y-hidden  justify-center snap-center hidden bg-black bg-no-repeat  md:block "
+                            <div class=" h-[500px] relative w-screen overflow-y-hidden animate__animated animate__fadeIn justify-center snap-center hidden bg-black bg-no-repeat  md:block "
                                  :style="{
                                                                                background: `url('https://image.tmdb.org/t/p/w780/${s['backdrop_path']}')`,
                                                                                     'background-size':'contain',
@@ -91,13 +91,13 @@
                     </div>
                     <div class="w-full h-3 bg-black"></div>
                 </div>
-                <div class="font-bold text-m text-gray-50/25 ml-5 mb-5 mt-2">Top Rated Movies</div>
+                <div  class="font-bold text-m text-gray-50/25 ml-5 mb-5 mt-2">Top Rated Movies</div>
                 <div class=" my-5 overflow-x-scroll snap-mandatory snap-x  w-full flex ">
                     <div v-if="!pending" v-for="(tm,i) in top_movies['results']"
                          class="group transition snap-start ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                         <NuxtLink :to="/movie/+tm.id">
                             <LazyMovieCard1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"
-                                            :year="tm.release_date"></LazyMovieCard1>
+                                            :year="tm.release_date" type="movie"></LazyMovieCard1>
                         </NuxtLink>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                          class="group transition snap-start ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
                         <NuxtLink :to="/tv/+tv.id">
                             <LazyMovieCard1 :name="tv.name" :image="tv.poster_path" :rate="tv.vote_average"
-                                            :year="tv.first_air_date"></LazyMovieCard1>
+                                            :year="tv.first_air_date" type="tv"></LazyMovieCard1>
                         </NuxtLink>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                     <NuxtLink :to="/movie/+top_rated_movie['results'][random_movie_top_rated]['id']">
                         <div class="absolute bg-gray-900/75 h-full w-full">
                             <div class="absolute sm:bottom-10 bottom-5 px-5  sm:text-left text-center">
-                                <div class="text-white/25  my-2 w-full text-sm flex text-center sm:ml-0 ml-[45%]">
+                                <div class="text-white/25  my-2 w-min text-sm flex text-center sm:ml-0 ml-[45%]">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                              class="w-4 h-4 text-yellow-500">
@@ -125,7 +125,7 @@
                                         </svg>
                                     </div>
 
-                                    <div class="ml-1 text-white">
+                                    <div class="ml-1 text-white ">
                                         {{
                                         top_rated_movie['results'][random_movie_top_rated]['vote_average'].toFixed(1)
                                         }}
@@ -250,11 +250,7 @@ const {data: top_rated_movie} = useFetch(runtimeConfig.public.apiBase + "movie/t
     }
 })
 
-const loading = ref(true);
 
-setInterval(() => {
-    loading.value = pending.value;
-}, 1000)
 
 </script>
 
