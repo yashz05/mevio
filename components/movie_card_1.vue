@@ -1,5 +1,5 @@
 <template>
-    <div class="snap-both animate__animated animate__fadeInUp">
+    <div class="snap-both ">
         <div class="mx-3  rounded-xl" :style="{ 'height': '195px',
                                                         'width': '139px'}">
             <nuxt-img class="rounded-xl"

@@ -6,7 +6,7 @@
         <div v-else class="w-full pt-16">
 
             <!-- MOBILE SCREEN START -->
-            <div class="w-full sm:hidden block relative animate__animated animate__fadeIn">
+            <div class="w-full sm:hidden block relative animate__animated animate__fadeIn animate__faster">
                 <nuxt-img :src='"https://image.tmdb.org/t/p/w500/"+movie.poster_path'
                           :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
                           class="w-full sm:hidden block  relative  h-[60vh] -z-10 bg-no-repeat bg-top bg-cover" />
@@ -57,7 +57,7 @@
             </div>
             <!-- MOBILE SCREEN END -->
 <!--BIG SCREEN START-->
-            <div class="w-full hidden sm:block relative animate__animated animate__fadeIn" :style="{
+            <div class="w-full hidden sm:block relative animate__animated animate__fadeIn animate__faster" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/w780/${movie.backdrop_path}')  `,
                                                             'background-repeat': 'no-repeat',
                                                                 'background-size': 'cover',

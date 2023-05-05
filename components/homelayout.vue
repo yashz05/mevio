@@ -17,19 +17,18 @@
 
                           Menu open: "hidden", Menu closed: "block"
                         -->
-                        <svg v-if="!mobile_menu" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        <svg v-if="!mobile_menu" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                             viewBox="0 0 24 24"
                              stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
-                        <!--
-                          Icon when menu is open.
 
-                          Heroicon name: outline/x
-
-                          Menu open: "block", Menu closed: "hidden"
-                        -->
-                        <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z" fill="currentColor" /></svg>
+                        <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"
+                                  fill="currentColor"/>
+                        </svg>
                     </button>
                 </div>
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
@@ -41,15 +40,17 @@
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-                        <a href="#"
+                        <NuxtLink to="/"
                            class="border-indigo-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Dashboard </a>
-                        <a href="#"
-                           class="border-transparent text-white hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Movies </a>
-                        <a href="#"
-                           class="border-transparent text-white hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Tv Shows </a>
+                            Dashboard </NuxtLink>
+                        <NuxtLink to="/movie"
+                                  class="border-transparent text-white hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Movies
+                        </NuxtLink>
+                        <NuxtLink to="/tv"
+                                  class="border-transparent text-white hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Tv Shows
+                        </NuxtLink>
 
                     </div>
                 </div>
@@ -70,17 +71,18 @@
         </div>
 
 
-                <div v-if="mobile_menu"  class="sm:hidden" id="mobile-menu">
-                    <div class="pt-2 pb-4 space-y-1">
-                        <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-                        <a href="#"
-                           class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Dashboard</a>
-                        <a href="#"
-                           class="border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Movies</a>
-                        <a href="#"
-                           class="border-transparent white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Tv Shows</a>
-                                      </div>
-                </div>
+        <div v-if="mobile_menu" class="sm:hidden" id="mobile-menu">
+            <div class="pt-2 pb-4 space-y-1">
+                <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
+                <a href="#"
+                   class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Dashboard</a>
+                <a href="#"
+                   class="border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Movies</a>
+                <a href="#"
+                   class="border-transparent white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Tv
+                    Shows</a>
+            </div>
+        </div>
 
         <div>
             <LazyNuxtLoadingIndicator :height="5" :duration="1000"/>
@@ -112,7 +114,8 @@
             </div>
 
 
-            <ul v-if="search_results != null " class="max-h-72 bg-gray-900 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-400"
+            <ul v-if="search_results != null "
+                class="max-h-72 bg-gray-900 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-400"
                 id="options" role="listbox">
 
                 <li v-for="all in search_results['data']['results']" class="cursor-default select-none px-4 py-2"
@@ -120,7 +123,9 @@
                     <NuxtLink :to="all.media_type !== 'movie' ? '/tv'+'/'+all.id :'/movie' +'/'+all.id">
                         <div class="flex" v-on:click="search_show =! search_show">
                             <div class="mr-4 flex-shrink-0">
-                                <nuxt-img class="rounded-xl " :src="'https://image.tmdb.org/t/p/w300/'+all.poster_path"    :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+useRuntimeConfig().public.appname" lazy
+                                <nuxt-img class="rounded-xl " :src="'https://image.tmdb.org/t/p/w300/'+all.poster_path"
+                                          :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+useRuntimeConfig().public.appname"
+                                          lazy
                                           :style="{' background-repeat':'no-repeat',
                                                         'background-size':'cover',
                                                         'height': '44px',
@@ -130,8 +135,10 @@
 
                             </div>
                             <div>
-                                <h4 class="text-md font-thin">{{ all.media_type === 'movie' ? all["title"] : all['name'] }}</h4>
-                                 </div>
+                                <h4 class="text-md font-thin">{{
+                                    all.media_type === 'movie' ? all["title"] : all['name']
+                                    }}</h4>
+                            </div>
                         </div>
 
                     </NuxtLink>
@@ -140,13 +147,10 @@
             </ul>
 
 
-
         </div>
     </div>
 
     <slot/>
-
-
 
 
 </template>
@@ -161,7 +165,7 @@ export default {
             search_show: false,
             search: null,
             search_results: null,
-            mobile_menu : false
+            mobile_menu: false
 
 
         }

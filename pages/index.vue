@@ -5,9 +5,10 @@
             <div class="w-full pt-10  text-white overflow-y-auto h-screen">
                 <div class="md:h-[460px] snap-mandatory snap-x h-[250px] my-5 overflow-x-scroll  w-full flex">
                     <div v-if="!pending" v-for="(s,i) in slider['results']" class="w-22 group">
-                        <NuxtLink :to="`/${s.media_type}/${s.id}`">
+                        <NuxtLink :to="`/${s.media_type}/${s.id}`" v-if="i < 7">
                             <!--  MOBILE START -->
-                            <div class="relative snap-center animate__animated animate__fadeIn   md:hidden" v-if="i <= 4" :style="{
+                            <div class="relative snap-center animate__animated animate__fadeIn animate__faster  md:hidden"
+                                 v-if="i <= 4" :style="{
                                                    background: `url('https://image.tmdb.org/t/p/w500/${s['backdrop_path']}')`,
                                                       ' background-repeat':'no-repeat',
                                                         'background-size':'cover',
@@ -16,7 +17,7 @@
                                                         'z-index':-10
                                                }">
                                 <div class="absolute  bg-gradient-to-t  from-black w-full text-center transition-all ease-in-out duration-300 h-44 bottom-0 font-bold text-3xl">
-                                    <div class="mt-12 hover:text-red-500">
+                                    <div class="mt-12 ">
                                         {{ s['media_type'] == 'movie' ? s["title"] : s['name'] }}
                                     </div>
                                     <div class="line-clamp-2 text-sm px-10 font-thin">
@@ -28,50 +29,47 @@
 
                             <!-- MOBILE END-->
                             <!--BIG SCREEN START-->
-                            <div class=" h-[500px] relative w-screen overflow-y-hidden animate__animated animate__fadeIn justify-center snap-center hidden bg-black bg-no-repeat  md:block "
-                                 :style="{
-                                                                               background: `url('https://image.tmdb.org/t/p/w780/${s['backdrop_path']}')`,
-                                                                                    'background-size':'contain',
-                                                                                    'background-position': '100% , 0px',
-                                                                                     'background-repeat': 'no-repeat',
-                                                                                    'height':'460px',
-                                                                                    width : '100vw',
-                                                                                    'z-index':-10
-                                                                           }">
-
-
-                                <div class="w-[65vw] absolute z-10
-                                left-0 h-[500px] bg-gradient-to-r bg-transparent from-black from-65% to-transparent  ">
-                                    <div class="mt-10 ">
-                                        <div class="font-black text-5xl px-7 w-[50vw]">
-                                            {{ s['media_type'] == 'movie' ? s["title"] : s['name'] }}
-                                        </div>
-                                        <div class="w-1/2 px-7 py-5 text-gray-600   line-clamp-4 ">
-                                            {{ s["overview"] }}
-                                        </div>
-                                        <div class="w-1/2 px-7 py-5 text-gray-600">
-                                            <div class=" w-[60%] text-sm flex mb-10   text-gray-300 font-thin">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                     fill="currentColor"
-                                                     class="w-4 h-4 text-yellow-500 mr-2">
-                                                    <path fillRule="evenodd"
-                                                          d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                                          clipRule="evenodd"/>
-                                                </svg>
-                                                {{ s["vote_average"].toFixed(2) }}
+                            <div class="hidden md:block">
+                                <div class="h-[450px] relative  w-screen overflow-y-hidden snap-center  bg-black bg-no-repeat  flex ">
+                                    <div class="bg-black w-[55%]  h-full transform origin-bottom flex">
+                                        <div class="mt-10 ">
+                                            <div class="font-black text-5xl px-7 w-[50vw]">
+                                                {{ s['media_type'] == 'movie' ? s["title"] : s['name'] }}
                                             </div>
-                                            <button type="button"
-                                                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600/50 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-indigo-700">
-                                                View
-                                            </button>
+                                            <div class="w-1/2 px-7 py-5 text-gray-600   line-clamp-4 ">
+                                                {{ s["overview"] }}
+                                            </div>
+                                            <div class="w-1/2 px-7 py-5 text-gray-600">
+                                                <div class=" w-[60%] text-sm flex mb-10   text-gray-300 font-thin">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                         fill="currentColor"
+                                                         class="w-4 h-4 text-yellow-500 mr-2">
+                                                        <path fillRule="evenodd"
+                                                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                                              clipRule="evenodd"/>
+                                                    </svg>
+                                                    {{ s["vote_average"].toFixed(2) }}
+                                                </div>
+                                                <button type="button"
+                                                        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600/50 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-indigo-700">
+                                                    View
+                                                </button>
+                                            </div>
                                         </div>
+                                        <div class="bg-gradient-to-r from-black via-black to-transparent h-full w-24 absolute -right-16 transform skew-x-6">
+
+                                        </div>
+
 
                                     </div>
-                                </div>
-                                <div class="w-[100px] absolute -z-10
-                                left-[44%] h-[500px] bg-gradient-to-r bg-transparent from-black from-65% to-transparent  origin-bottom -rotate-12"></div>
-                            </div>
 
+
+                                    <div class="bg-yellow-300 w-[45%] h-full">
+                                        <nuxt-img :src="`https://image.tmdb.org/t/p/w780/`+s['backdrop_path']"
+                                                  class="h-full w-full object-cover"/>
+                                    </div>
+                                </div>
+                            </div>
                             <!--BIG SCREEN END-->
                         </NuxtLink>
                     </div>
@@ -91,7 +89,7 @@
                     </div>
                     <div class="w-full h-3 bg-black"></div>
                 </div>
-                <div  class="font-bold text-m text-gray-50/25 ml-5 mb-5 mt-2">Top Rated Movies</div>
+                <div class="font-bold text-m text-gray-50/25 ml-5 mb-5 mt-2">Top Rated Movies</div>
                 <div class=" my-5 overflow-x-scroll snap-mandatory snap-x  w-full flex ">
                     <div v-if="!pending" v-for="(tm,i) in top_movies['results']"
                          class="group transition snap-start ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
@@ -188,9 +186,6 @@
 <script setup lang="ts">
 
 
-import {ref} from "#imports";
-
-
 const random_movie_top_rated = ref(Math.floor(Math.random() * 10));
 const runtimeConfig = useRuntimeConfig()
 useHead({
@@ -249,7 +244,6 @@ const {data: top_rated_movie} = useFetch(runtimeConfig.public.apiBase + "movie/t
         "include_video": true,
     }
 })
-
 
 
 </script>
