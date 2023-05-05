@@ -117,9 +117,15 @@
 <script setup lang="ts">
 const rn = random_number()
 const number = rn.value
-
-
 const runtimeConfig = useRuntimeConfig()
+useHead({
+    title: 'Movies ~' + runtimeConfig.public.appname,
+    meta: [
+        {name: 'description', content: 'Movies'}
+    ]
+})
+
+
 const [
     {data: top_rated},
     {data: top_tv_random},

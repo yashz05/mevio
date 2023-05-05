@@ -120,6 +120,12 @@ const number = rn.value
 
 
 const runtimeConfig = useRuntimeConfig()
+useHead({
+    title: 'TV ~' + runtimeConfig.public.appname,
+    meta: [
+        {name: 'description', content: 'TV Shows'}
+    ]
+})
 const [
     {data: top_rated},
     {data: top_movie_random},
@@ -131,7 +137,7 @@ const [
     useFetch(runtimeConfig.public.apiBase + "movie/top_rated", {
         params: {
             "api_key": runtimeConfig.public.apiSecret,
-            "page":2
+            "page": 2
         },
 
     }),
