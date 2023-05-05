@@ -41,7 +41,7 @@
 
 
 
-const number = random_number()
+const number = 0
 console.log(number)
 const runtimeConfig = useRuntimeConfig()
 const [{data: top_movie_random}, {data: movie_discover}] = await Promise.all([
