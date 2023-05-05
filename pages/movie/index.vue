@@ -1,5 +1,6 @@
 <template>
     <homelayout v-if="top_movie_random!=null">
+        <NuxtLink :to="/movie/+top_movie_random['results'][number ?? 0]['id']">
         <div class="h-screen  w-full bg-gray-900 relative">
             <div class="absolute top-0 h-screen w-full bg-gradient-to-t from-black  to-transparent"></div>
             <NuxtImg
@@ -25,6 +26,7 @@
             </div>
 
         </div>
+        </NuxtLink>
 
         <div class=" my-5 overflow-x-scroll snap-mandatory snap-x  w-full flex ">
             <div v-if="movie_discover != null" v-for="(tm,i) in movie_discover['results']"
