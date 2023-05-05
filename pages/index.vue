@@ -185,8 +185,8 @@
 
 <script setup lang="ts">
 
-
-const random_movie_top_rated = ref(Math.floor(Math.random() * 10));
+const rn = random_number()
+const random_movie_top_rated = rn.value
 const runtimeConfig = useRuntimeConfig()
 useHead({
     title: runtimeConfig.public.appname,

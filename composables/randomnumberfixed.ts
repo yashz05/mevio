@@ -1,1 +1,2 @@
-export const random_number = () => useState('number', () => Math.round(Math.random() * 1000))
+export const random_number = () => useState<number>('number', () => Math.round(Math.random() * 10))
+

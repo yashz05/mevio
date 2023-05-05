@@ -1,16 +1,16 @@
 <template>
-    <homelayout v-if="top_movie_random!=null">
+    <homelayout v-if="top_tv_random!=null">
         <div class="h-screen  w-full bg-gray-900 relative">
             <div class="absolute top-0 h-screen w-full bg-gradient-to-t from-black  to-transparent"></div>
             <NuxtImg
-                    :src="`https://image.tmdb.org/t/p/w780`+top_movie_random['results'][number ?? 0]['backdrop_path']"
+                    :src="`https://image.tmdb.org/t/p/w780`+top_tv_random['results'][number ?? 0]['backdrop_path']"
                     class="h-screen w-full object-cover"
                     :placeholder="'https://dummyimage.com/500x400/1d2840/fafafa.png&text='+runtimeConfig.public.appname"
 
             />
             <div class="absolute md:top-1/2 top-1/3 w-full text-white md:font-black font-bold text-5xl">
                 <div class="text-center px-5 animate__animated animate__fadeInUp">
-                    {{ top_movie_random['results'][number ?? 0]['title'] }}
+                    {{ top_tv_random['results'][number ?? 0]['original_name'] }}
                 </div>
             </div>
 
@@ -27,9 +27,9 @@
         </div>
 
         <div class=" my-5 overflow-x-scroll snap-mandatory snap-x  w-full flex ">
-            <div v-if="movie_discover != null" v-for="(tm,i) in movie_discover['results']"
+            <div v-if="tv_discover != null" v-for="(tm,i) in tv_discover['results']"
                  class="transition snap-start ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
-                <NuxtLink :to="/movie/+tm.id">
+                <NuxtLink :to="/tv/+tm.id">
                     <LazyMovieCard1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"
                                     :year="tm.release_date" type="movie"></LazyMovieCard1>
                 </NuxtLink>
@@ -39,7 +39,7 @@
 
             <nav class=" flex space-x-8 snap-mandatory snap-x -mt-3 mb-0 overflow-x-scroll overflow-y-hidden w-full "
                  aria-label="Tabs">
-                <NuxtLink :to="'/genre-movie-'+g.name+'/'+g.id" v-for="g in movie_genre['genres']"
+                <NuxtLink :to="'/genre-movie-'+g.name+'/'+g.id" v-for="g in tv_genre['genres']"
                           class="border-transparent snap-start text-gray-400 hover:text-indigo-400
                            hover:border-indigo-300 whitespace-nowrap pb-2 p-2 px-3 rounded-full bg-gray-800
                            border-b-2 font-bold text-md">
@@ -48,16 +48,16 @@
             </nav>
         </div>
         <div class=" my-5 overflow-x-scroll snap-mandatory snap-x scroll-pl-10  w-full flex pb-2">
-            <div v-if="upcoming_movie != null" v-for="(up,i) in upcoming_movie['results']"
+            <div v-if="upcoming_tv != null" v-for="(up,i) in upcoming_tv['results']"
                  class="group transition snap-start ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
-                <NuxtLink :to="/movie/+up.id">
+                <NuxtLink :to="/tv/+up.id">
                     <upcomming-card :name="up.title" :image="up.poster_path" :rate="up.vote_average"
                                     :year="up.release_date"></upcomming-card>
                 </NuxtLink>
             </div>
         </div>
         <div v-if="top_rated != null" class="relative mx-3">
-            <NuxtLink :to="/movie/+top_rated['results'][number]">
+            <NuxtLink :to="/tv/+top_rated['results'][number]['id']">
                 <div class="absolute bg-gray-900/75 h-full w-full">
                     <div class="absolute sm:bottom-10 bottom-5 px-5  sm:text-left text-center">
                         <div class="text-white/25  my-2 w-min text-sm flex text-center sm:ml-0 ml-[45%]">
@@ -78,7 +78,7 @@
 
                         </div>
                         <div class="sm:text-6xl text-white  text-2xl font-bold mb-5">
-                            {{ top_rated['results'][number]['title'] }}
+                            {{ top_rated['results'][number]['original_name'] }}
                         </div>
                         <div class="sm:w-1/2 w-[100%] text-white sm:line-clamp-4 line-clamp-3">
                             {{ top_rated['results'][number]['overview'] }}
@@ -105,7 +105,7 @@
         <div class=" my-5 overflow-x-scroll snap-mandatory snap-x  w-full flex ">
             <div v-if="now_playing != null" v-for="(tm,i) in now_playing['results']"
                  class="transition snap-start ease-in-out delay-150  pt-2 hover:-translate-y-1 hover:scale-105 z-10">
-                <NuxtLink :to="/movie/+tm.id">
+                <NuxtLink :to="/tv/+tm.id">
                     <LazyMovieCard1 :name="tm.title" :image="tm.poster_path" :rate="tm.vote_average"
                                     :year="tm.release_date" type="movie"></LazyMovieCard1>
                 </NuxtLink>
@@ -122,27 +122,27 @@ const number = rn.value
 const runtimeConfig = useRuntimeConfig()
 const [
     {data: top_rated},
-    {data: top_movie_random},
-    {data: movie_discover},
-    {data: movie_genre},
+    {data: top_tv_random},
+    {data: tv_discover},
+    {data: tv_genre},
     {data: now_playing},
-    {data: upcoming_movie}
+    {data: upcoming_tv}
 ] = await Promise.all([
-    useFetch(runtimeConfig.public.apiBase + "movie/top_rated", {
+    useFetch(runtimeConfig.public.apiBase + "tv/top_rated", {
         params: {
             "api_key": runtimeConfig.public.apiSecret,
-            "page":2
+            "page": 2
         },
 
     }),
-    useFetch(runtimeConfig.public.apiBase + "trending/movie/day", {
+    useFetch(runtimeConfig.public.apiBase + "trending/tv/day", {
         params: {
             "api_key": runtimeConfig.public.apiSecret,
             "page": 1
         },
 
     }),
-    useFetch(`${runtimeConfig.public.apiBase}discover/movie`, {
+    useFetch(`${runtimeConfig.public.apiBase}discover/tv`, {
         params: {
             "api_key": runtimeConfig.public.apiSecret,
             "language": "en-US",
@@ -153,18 +153,18 @@ const [
             "with_watch_monetization_types": "flatrate"
         }
     }),
-    useFetch(runtimeConfig.public.apiBase + "genre/movie/list", {
+    useFetch(runtimeConfig.public.apiBase + "genre/tv/list", {
         params: {
             "api_key": runtimeConfig.public.apiSecret
         }
     }),
-    useFetch(runtimeConfig.public.apiBase + "movie/now_playing", {
+    useFetch(runtimeConfig.public.apiBase + "tv/on_the_air", {
         params: {
             "api_key": runtimeConfig.public.apiSecret,
             "page": 1
         }
     }),
-    useFetch(`${runtimeConfig.public.apiBase}movie/upcoming`, {
+    useFetch(`${runtimeConfig.public.apiBase}tv/airing_today`, {
         params: {
             "api_key": runtimeConfig.public.apiSecret,
             "language": "en-US",
